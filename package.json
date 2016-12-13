@@ -1,0 +1,11 @@
+{
+  "name": "squarespace-webpack-boilerplate",
+  "version": "1.0.0",
+  "description": "A webpack boilerplate for building Squarespace templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mario.perez415@gmail.com",
+  "license": "MIT"
+}
