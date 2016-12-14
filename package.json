@@ -8,17 +8,20 @@
     "less_crit_file": "./src/styles/critical/critical.less",
     "css_file": "./src/template/styles/main.css",
     "css_crit_file": "./src/styles/critical/critical.css",
-    "js_file": "./src/template/scripts/app.js"
+    "js_file": "./src/template/scripts/app.js",
+    "staging_url": "https://yourstagingurl.squarespace.com",
+    "production_url": "https://yourproductionurl.squarespace.com"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "clean:crit": "rm -fv ./src/styles/critical/critical.css",
     "clean:src-temp": "rm -rfv ./src/template/*",
     "build:js": "webpack",
     "build:css": "npm run build:css-main ; npm run build:css-crit",
     "build:css-main": "lessc $npm_package_config_less_file $npm_package_config_css_file",
     "build:css-crit": "lessc $npm_package_config_less_crit_file $npm_package_config_css_crit_file && gulp critical && npm run clean:crit",
-    "build:src-temp": "cp -av ./src/assets/. ./src/template/assets ; cp -av ./src/blocks/. ./src/template/blocks ; cp -av ./src/collections/. ./src/template/collections ; cp -av ./src/regions/. ./src/template && (cd ./src/template && find . -type f -name 'README.md' -ls -delete) && npm run build:js ; npm run build:css"
+    "build:src-temp": "npm run clean:src-temp && cp -av ./src/template.conf ./src/template/ ; cp -av ./src/assets/. ./src/template/assets ; cp -av ./src/blocks/. ./src/template/blocks ; cp -av ./src/collections/. ./src/template/collections ; cp -av ./src/regions/. ./src/template && (cd ./src/template && find . -type f -name 'README.md' -ls -delete) && npm run build:js ; npm run build:css",
+    "start": "squarespace-server $npm_package_config_staging_url --auth -d ./src/template",
+    "test": "squarespace-server $npm_package_config_production_url --auth -d ./src/template"
   },
   "repository": {
     "type": "git",
