@@ -14,12 +14,16 @@
   },
   "scripts": {
     "clean:crit": "rm -fv ./src/styles/critical/critical.css",
-    "clean:src-temp": "rm -rfv ./src/template/*",
+    "clean:live": "rm -rfv ./dist/live/template/*",
+    "clean:staging": "rm -rfv ./dist/staging/template/*",
     "build:js": "webpack",
+    "build:js-prod": "webpack -p",
     "build:css": "npm run build:css-main ; npm run build:css-crit",
     "build:css-main": "lessc $npm_package_config_less_file $npm_package_config_css_file",
     "build:css-crit": "lessc $npm_package_config_less_crit_file $npm_package_config_css_crit_file && gulp critical && npm run clean:crit",
-    "build:src-temp": "npm run clean:src-temp && cp -av ./src/template.conf ./src/template/ ; cp -av ./src/assets/. ./src/template/assets ; cp -av ./src/blocks/. ./src/template/blocks ; cp -av ./src/collections/. ./src/template/collections ; cp -av ./src/regions/. ./src/template && (cd ./src/template && find . -type f -name 'README.md' -ls -delete) && npm run build:js ; npm run build:css",
+    "build:production": "npm run build:js-prod ; npm run build:css",
+    "build:staging": "npm run clean:staging && npm run build:production && cp -av ./src/template/* ./dist/staging/template/ && (cd ./dist/staging/template && find . -name '.gitkeep' -type f -ls -delete",
+    "build": "npm run clean:live && npm run build:production && cp -av ./src/template/* ./dist/live/template/ && (cd ./dist/live/template && find . -name '.gitkeep' -type f -ls -delete)",
     "start": "squarespace-server $npm_package_config_staging_url --auth -d ./src/template",
     "test": "squarespace-server $npm_package_config_production_url --auth -d ./src/template"
   },
