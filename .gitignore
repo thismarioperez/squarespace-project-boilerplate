@@ -6,7 +6,7 @@
 ###############################################################################
 # Dependencies
 #
-# Modules or components you are using for this projet.
+# Modules or components you are using for this project.
 ###############################################################################
 
 node_modules/
@@ -38,8 +38,8 @@ npm-debug.log
 # Manage the actual Squarespace template in another repo
 ###############################################################################
 
-dist/template
-src/template
+dist/template/*
+src/template/*
 
 
 
