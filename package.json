@@ -9,8 +9,8 @@
     "css_file": "./src/template/styles/main.css",
     "css_crit_file": "./src/styles/critical/critical.css",
     "js_file_path": "./src/template/scripts/app/",
-    "staging_url": "https://[your-staging-url].squarespace.com",
-    "live_url": "https://[your-live-url].squarespace.com"
+    "staging_url": "https://PROJECT_URL-staging.squarespace.com",
+    "live_url": "https://PROJECT_URL.squarespace.com"
   },
   "scripts": {
     "build": "npm run clean:live && npm run compile:prod && cp -av ./src/template/* ./dist/live/template/ && (cd ./dist/live/template && find . -name '.gitkeep' -type f -ls -delete)",
