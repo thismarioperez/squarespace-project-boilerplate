@@ -37,7 +37,7 @@ npm-debug.log
 #
 # Manage the actual Squarespace template in another repo
 ###############################################################################
-dist/**/template/*
+dist/**/template
 
 
 
