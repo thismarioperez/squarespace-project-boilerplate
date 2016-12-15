@@ -55,8 +55,6 @@ src/template/blocks/critical.block
 # Keep these files
 ###############################################################################
 !dist/**/.gitkeep
-!src/template/scripts/.gitkeep
-!src/template/styles/.gitkeep
 
 
 
