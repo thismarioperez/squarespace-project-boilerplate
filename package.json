@@ -13,7 +13,7 @@
     "live_url": "https://PROJECT_URL.squarespace.com"
   },
   "scripts": {
-    "build": "npm run clean:live && npm run compile:prod && cp -av ./src/template/* ./dist/live/template/ && (cd ./dist/live/template && find . -name '.gitkeep' -type f -ls -delete)",
+    "build": "npm run clean:live && npm run compile:prod && cp -av ./src/template/* ./dist/live/template/",
     "build:dev": "npm run compile && npm run build:staging",
     "build:staging": "npm run clean:staging && cp -av ./src/template/* ./dist/staging/template/",
     "clean:crit": "rm -fv ./src/styles/critical/critical.css",
