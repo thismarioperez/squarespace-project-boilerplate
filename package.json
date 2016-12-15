@@ -8,7 +8,7 @@
     "less_crit_file": "./src/styles/critical/critical.less",
     "css_file": "./src/template/styles/main.css",
     "css_crit_file": "./src/styles/critical/critical.css",
-    "js_file": "./src/template/scripts/app.js",
+    "js_file_path": "./src/template/scripts/app/",
     "staging_url": "https://yourstagingurl.squarespace.com",
     "production_url": "https://yourproductionurl.squarespace.com"
   },
@@ -25,6 +25,7 @@
     "clean:crit": "rm -fv ./src/styles/critical/critical.css",
     "clean:live": "rm -rfv ./dist/live/template/*",
     "clean:staging": "rm -rfv ./dist/staging/template/*",
+    "lint:js": "node_modules/eslint/bin/eslint.js $npm_package_config_js_file_path",
     "start": "squarespace-server $npm_package_config_staging_url --auth -d ./src/template",
     "test": "squarespace-server $npm_package_config_production_url --auth -d ./src/template",
     "watch": "npm run build:dev && parallelshell 'npm run watch:js' 'npm run watch:styles' 'npm run watch:sync'",
