@@ -45,8 +45,8 @@ dist/**/template/*
 ###############################################################################
 # Compiled files that do not need to be tracked
 ###############################################################################
-src/template/scripts/*
-src/template/styles/*
+src/template/scripts/app.js
+src/template/styles/main.css
 src/template/blocks/critical.block
 
 
@@ -54,6 +54,7 @@ src/template/blocks/critical.block
 ###############################################################################
 # Keep these files
 ###############################################################################
+# Keep both live and staging folders
 !dist/**/.gitkeep
 
 
