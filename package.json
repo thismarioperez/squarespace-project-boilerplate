@@ -15,10 +15,9 @@
   "scripts": {
     "build": "npm run clean:live && npm run compile:prod && cp -av ./src/template/* ./dist/live/template/ && (cd ./dist/live/template && find . -name '.gitkeep' -type f -ls -delete)",
     "build:dev": "npm run compile && npm run build:staging",
-    "build:staging": "npm run clean:staging && cp -av ./src/template/* ./dist/staging/template/ && (npm run clean:gitkeep)",
+    "build:staging": "npm run clean:staging && cp -av ./src/template/* ./dist/staging/template/",
     "clean:crit": "rm -fv ./src/styles/critical/critical.css",
     "clean:dist": "rm -rf ./dist/**/template/",
-    "clean:gitkeep": "cd ./dist/staging/template && find . -name '.gitkeep' -type f -ls -delete",
     "clean:live": "rm -rfv ./dist/live/template/*",
     "clean:staging": "rm -rfv ./dist/staging/template/*",
     "clone": "npm run clean:dist && npm run clone:staging && npm run clone:live",
@@ -33,12 +32,12 @@
     "compile:prod": "npm run compile:js-prod && npm run compile:css",
     "lint:js": "node_modules/eslint/bin/eslint.js $npm_package_config_js_file_path",
     "start": "squarespace-server $npm_package_config_staging_url --auth -d ./dist/staging/template",
-    "test": "squarespace-server $npm_package_config_live_url --auth -d ./dist/live/template",
+    "test": "squarespace-server $npm_package_config_live_url --auth -d ./dist/staging/template",
     "watch": "npm run build:dev && parallelshell 'npm run watch:js' 'npm run watch:styles' 'npm run watch:template' 'npm run watch:sync'",
     "watch:js": "chokidar './src/scripts/app/*' './src/scripts/app/**/*' -d 100 -c 'npm run compile:js'",
     "watch:styles": "chokidar './src/styles/*.less' './src/styles/**/*.less' -d 100 -c 'npm run compile:css'",
-    "watch:template": "chokidar './src/template/*' './src/template/**/*' -d 100 -c 'npm run build:staging'",
-    "watch:sync": "browser-sync start --proxy 'localhost:9000' --files './dist/staging/template'"
+    "watch:template": "chokidar './src/template/*' './src/template/**/*' -d 100 -c 'npm run build:staging && browser-sync reload'",
+    "watch:sync": "browser-sync start --proxy 'localhost:9000'"
   },
   "repository": {
     "type": "git",
