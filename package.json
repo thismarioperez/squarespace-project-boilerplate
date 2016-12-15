@@ -9,8 +9,8 @@
     "css_file": "./src/template/styles/main.css",
     "css_crit_file": "./src/styles/critical/critical.css",
     "js_file_path": "./src/template/scripts/app/",
-    "staging_url": "https://yourstagingurl.squarespace.com",
-    "live_url": "https://yourproductionurl.squarespace.com"
+    "staging_url": "https://your-staging-url.squarespace.com",
+    "live_url": "https://your-live-url.squarespace.com"
   },
   "scripts": {
     "build": "npm run clean:live && npm run build:prod && cp -av ./src/template/* ./dist/live/template/ && (cd ./dist/live/template && find . -name '.gitkeep' -type f -ls -delete)",
@@ -31,10 +31,11 @@
     "lint:js": "node_modules/eslint/bin/eslint.js $npm_package_config_js_file_path",
     "start": "squarespace-server $npm_package_config_staging_url --auth -d ./src/template",
     "test": "squarespace-server $npm_package_config_live_url --auth -d ./src/template",
-    "watch": "npm run build:dev && parallelshell 'npm run watch:js' 'npm run watch:styles' 'npm run watch:sync'",
+    "watch": "npm run build:dev && parallelshell 'npm run watch:js' 'npm run watch:styles' 'npm run watch:template' 'npm run watch:sync'",
     "watch:js": "chokidar './src/scripts/app/*' './src/scripts/app/**/*' -d 100 -c 'npm run build:js'",
     "watch:styles": "chokidar './src/styles/*.less' './src/styles/**/*.less' -d 100 -c 'npm run build:css'",
-    "watch:sync": "browser-sync start --proxy 'localhost:9000' --files './src/template'"
+    "watch:template": "chockidar './src/template/*' './src/template/**/*' -d 100 -c 'npm run build:staging'",
+    "watch:sync": "browser-sync start --proxy 'localhost:9000' --files './dist/staging/template'"
   },
   "repository": {
     "type": "git",
