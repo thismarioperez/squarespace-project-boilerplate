@@ -13,23 +13,24 @@
     "production_url": "https://yourproductionurl.squarespace.com"
   },
   "scripts": {
-    "build": "npm run clean:live && npm run build:production && cp -av ./src/template/* ./dist/live/template/ && (cd ./dist/live/template && find . -name '.gitkeep' -type f -ls -delete)",
-    "build:css": "npm run build:css-main & npm run build:css-crit",
-    "build:css-main": "lessc $npm_package_config_less_file $npm_package_config_css_file",
-    "build:css-crit": "lessc $npm_package_config_less_crit_file $npm_package_config_css_crit_file && gulp critical && npm run clean:crit",
+    "build": "npm run clean:live && npm run build:prod && cp -av ./src/template/* ./dist/live/template/ && (cd ./dist/live/template && find . -name '.gitkeep' -type f -ls -delete)",
+    "build:css": "npm run build:css-main && npm run build:css-crit",
+    "build:css-main": "lessc $npm_package_config_less_file $npm_package_config_css_file --autoprefix='last 2 versions' --clean-css ",
+    "build:css-crit": "lessc $npm_package_config_less_crit_file $npm_package_config_css_crit_file --autoprefix='last 2 versions' --clean-css && gulp critical && npm run clean:crit",
     "build:js": "webpack",
     "build:js-prod": "webpack -p",
-    "build:production": "npm run build:js-prod ; npm run build:css",
-    "build:staging": "npm run clean:staging && npm run build:production && cp -av ./src/template/* ./dist/staging/template/ && (cd ./dist/staging/template && find . -name '.gitkeep' -type f -ls -delete",
+    "build:dev": "npm run build:js && npm run build:css",
+    "build:prod": "npm run build:js-prod && npm run build:css",
+    "build:staging": "npm run clean:staging && npm run build:prod && cp -av ./src/template/* ./dist/staging/template/ && (cd ./dist/staging/template && find . -name '.gitkeep' -type f -ls -delete",
     "clean:crit": "rm -fv ./src/styles/critical/critical.css",
     "clean:live": "rm -rfv ./dist/live/template/*",
     "clean:staging": "rm -rfv ./dist/staging/template/*",
     "start": "squarespace-server $npm_package_config_staging_url --auth -d ./src/template",
     "test": "squarespace-server $npm_package_config_production_url --auth -d ./src/template",
-    "watch": "parallelshell 'npm run watch:js' 'npm run watch:styles' & npm run watch:sync",
-    "watch:js": "chokidar './src/scripts/app/*' './src/scripts/app/**/*' --initial -d 100 -c 'npm run build:js && browser-sync reload'",
-    "watch:styles": "chokidar './src/styles/*.less' './src/styles/**/*.less' --initial -d 100 -c 'npm run build:css && browser-sync reload'",
-    "watch:sync": "browser-sync start --proxy 'localhost:9000'"
+    "watch": "npm run build:dev && parallelshell 'npm run watch:js' 'npm run watch:styles' 'npm run watch:sync'",
+    "watch:js": "chokidar './src/scripts/app/*' './src/scripts/app/**/*' -d 100 -c 'npm run build:js'",
+    "watch:styles": "chokidar './src/styles/*.less' './src/styles/**/*.less' -d 100 -c 'npm run build:css'",
+    "watch:sync": "browser-sync start --proxy 'localhost:9000' --files './src/template'"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,8 @@
     "gulp": "^3.9.1",
     "gulp-inline": "^0.1.2",
     "less": "^2.7.1",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
     "parallelshell": "^2.0.0",
     "webpack": "^1.14.0"
   },
