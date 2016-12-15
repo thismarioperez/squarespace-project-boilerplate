@@ -16,7 +16,7 @@
     "build": "npm run clean:live && npm run build:prod && cp -av ./src/template/* ./dist/live/template/ && (cd ./dist/live/template && find . -name '.gitkeep' -type f -ls -delete)",
     "build:css": "npm run build:css-main && npm run build:css-crit",
     "build:css-main": "lessc $npm_package_config_less_file $npm_package_config_css_file --autoprefix='last 2 versions' --clean-css ",
-    "build:css-crit": "lessc $npm_package_config_less_crit_file $npm_package_config_css_crit_file --autoprefix='last 2 versions' --clean-css && gulp critical && npm run clean:crit",
+    "build:css-crit": "lessc $npm_package_config_less_crit_file $npm_package_config_css_crit_file --autoprefix='last 2 versions' --clean-css && gulp critical-block && npm run clean:crit",
     "build:js": "webpack",
     "build:js-prod": "webpack -p",
     "build:dev": "npm run build:js && npm run build:css",
