@@ -42,7 +42,7 @@ In order to work on this project you'll need access to some (or all) of these we
 * **AUTHOR_NAME**
     * Lead Developer
     * Email: [name@domain.com](mailto:name@domain.com)
-    * Bitbucket: [bitbucket.org/BITBUCKET_USERNAME](https://bitbucket.org/BITBUCKET_USERNAME)
+    * Bitbucket: [bitbucket.org/BITBUCKET_USERNAME](https://bitbucket.org/BITBUCKET_USERNAME/)
 
 * **Squarespace Support**
     * Platform Support
