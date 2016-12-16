@@ -4,6 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
+    <!-- critical/above the fold styles -->
+    {@|apply critical.block}
+
     <!-- include system scripts, page meta, and header code injection -->
     {squarespace-headers}
   </head>
@@ -37,6 +40,9 @@
 
     <!-- combo and minify scripts when not logged in -->
     <squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
+
+    <!-- app.js / the main js file -->
+    <script src="./scripts/app.js"></script>
 
     <!-- other scripts, and footer code injection -->
     {squarespace-footers}
