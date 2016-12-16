@@ -60,7 +60,7 @@
     "compile:js:prod": "webpack -p",
     "lint:js": "eslint $npm_package_config_js_file_path",
     "start": "npm-run-all -p server watch",
-    "server": "squarespace-server $npm_package_config_staging_url -d ./dist/staging/template",
+    "server": "squarespace-server $npm_package_config_staging_url --auth -d ./dist/staging/template",
     "server:live": "squarespace-server $npm_package_config_live_url --auth -d ./dist/staging/template",
     "prewatch": "npm-run-all compile build:staging",
     "watch": "npm-run-all -p watch:*",
