@@ -1,4 +1,4 @@
-Squarespace Project Readme Boilerplate
+Squarespace Project Boilerplate
 =======
 > Setup your Squarespace projects with this boilerplate.
 
