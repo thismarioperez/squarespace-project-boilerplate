@@ -14,7 +14,7 @@
   },
   "scripts": {
     "postinstall": "npm run clone",
-    "prebuild": "clean:live",
+    "prebuild": "npm run clean:live",
     "build": "npm-run-all compile:js:prod compile:css build:live",
     "build:live": "cp -av ./src/template/* ./dist/live/template/",
     "prebuild:staging": "npm run clean:staging",
