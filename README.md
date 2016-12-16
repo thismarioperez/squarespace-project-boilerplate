@@ -15,6 +15,7 @@ After cloning this repo, run a Find & Replace on the following:
 
 * PROJECT_TITLE - Replace with your Project's Title
 * PROJECT_URL - Replace with your Project's production URL.
-* GITHUB_USERNAME - Replace with the primary Github account you work in.
+* BITBUCKET_USERNAME - Replace with the primary Bitbucket account you work in.
 * PROJECT_TITLE_SLUG - Replace with the URL slug version of your Project Title.
 * AUTHOR_NAME - The Author/Company name you want in your Squarespace template.conf.
+* TEAM_SLUG - The Author's Bitbucket team.

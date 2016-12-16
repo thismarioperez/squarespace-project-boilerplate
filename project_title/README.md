@@ -30,7 +30,7 @@ Here's a little bit about the technology used in this project.
 In order to work on this project you'll need access to some (or all) of these web services:
 
 * **Top-level Code Repository** - Bitbucket
-    * [AUTHOR_NAME's Github organization](https://bitbucket.org/lowrycreative/PROJECT_TITLE_SLUG).
+    * [AUTHOR_NAME's Bitbucket team](https://bitbucket.org/TEAM_SLUG/PROJECT_TITLE_SLUG).
 * **Main Website (PROJECT_URL)** - Squarespace
     * You need Administrator Permissions for  [https://PROJECT_URL.squarespace.com](https://PROJECT_URL.squarespace.com)
 * **Staging Website (staging.PROJECT_URL)** - Squarespace
@@ -42,7 +42,7 @@ In order to work on this project you'll need access to some (or all) of these we
 * **AUTHOR_NAME**
     * Lead Developer
     * Email: [name@domain.com](mailto:name@domain.com)
-    * Github: [github.com/GITHUB_USERNAME](https://github.com/GITHUB_USERNAME)
+    * Bitbucket: [bitbucket.org/BITBUCKET_USERNAME](https://bitbucket.org/BITBUCKET_USERNAME/)
 
 * **Squarespace Support**
     * Platform Support
@@ -133,15 +133,15 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 
 `npm start`
 > The following tasks are executed in parallel:
-> 
+>
 > * Starts Squarespace Server, using content from `https://PROJECT_TITLE_SLUG-staging.squarespace.com` and serves files from `/dist/staging/template`.
-> 
+>
 > * Watches files in `/src/scripts`, `/src/style/`, and `/src/template`.
-> 
+>
 > * Also runs a Browsersync server in a parallel shell.
-> 
+>
 > * When LESS and Javascript file changes are detected, the main files are compiled into `/src/template`.
-> 
+>
 > * When changes are detected in `/src/template`, the **Staging** template is rebuilt, and browserync is reloaded.
 
 -
@@ -152,8 +152,8 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 -
 
 `npm run build`
-> The main build task that compiles production ready code to the `/dist/live/template` folder. 
-> 
+> The main build task that compiles production ready code to the `/dist/live/template` folder.
+>
 > ** _Removes source maps from js files_.
 
 -
@@ -164,4 +164,3 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 -
 
 Refer to this project's `package.json` file to see what npm scripts power these main build tasks.
-
