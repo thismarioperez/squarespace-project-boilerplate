@@ -34,7 +34,7 @@
     "postcompile:css:crit": "npm run clean:crit",
     "compile:js": "webpack",
     "compile:js:prod": "webpack -p",
-    "lint:js": "node_modules/eslint/bin/eslint.js $npm_package_config_js_file_path",
+    "lint:js": "eslint $npm_package_config_js_file_path",
     "start": "npm-run-all -p server watch",
     "server": "squarespace-server $npm_package_config_staging_url -d ./dist/staging/template",
     "server:live": "squarespace-server $npm_package_config_live_url --auth -d ./dist/staging/template",
