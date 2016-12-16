@@ -54,23 +54,6 @@ In order to work on this project you'll need access to some (or all) of these we
 
 ## Getting Started
 
-### Clone
-
-Clone this project to your local machine.
-
-```shell
-git clone https://bitbucket.org/lowrycreative/PROJECT_TITLE_SLUG.git PROJECT_TITLE_SLUG
-```
-
-`cd` into your newly created project folder.
-
-Then clone the [Live Squarespace Template repository](https://PROJECT_URL.squarespace.com) and [Staging Squarespace Template repository](https://PROJECT_URL-staging.squarespace.com) into `dist` using an npm script.
-
-```shell
-npm run clone
-```
-
-
 ### Install
 
 Install all project dependencies.
@@ -84,7 +67,7 @@ All build and watch tasks are run via `npm` using local dev dependencies.
 npm install
 ```
 
-All project dependencies should now be installed in the `node_modules` folder.
+All project dependencies should now be installed in the `node_modules` folder. A postinstall script will automatically clone the [Live Squarespace Template repository](https://PROJECT_URL.squarespace.com) and [Staging Squarespace Template repository](https://PROJECT_URL-staging.squarespace.com) into `dist/live` & `dist/staging`.
 
 
 
@@ -103,21 +86,17 @@ npm i -g @squarespace/server
 Once installed, run the server with:
 
 ```
-npm start
+npm server
 ```
 
 This starts a Squarespace Server using template files from the **Staging** website located in `/dist/staging/template`.
 
-Once you've authenticated your connection to Squarespace with your username and password, you'll want to run the Squarespace Server in the background while you run a watch task that rebuilds the template when you make changes to scripts/styles/markup files.
+Once you've authenticated your connection to Squarespace with your username and password, you'll be able to view your cached website served by the Squarespace Server at: `localhost:9000`.
 
-If you're not already running any tasks in the background, you can use `^Z` to stop the npm start task then use `bg 1` to run it in the background.
-
-You can then view your cached website served by the Squarespace Server at: `localhost:9000`.
-
-Alternatively, you can test your template changes using content from your live site by running:
+Furthermore, you can test your template changes using content from your live site by running:
 
 ```
-npm run test
+npm run server:live
 ```
 
 
@@ -151,19 +130,23 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 
 -
 
-`npm run clone`
-> Clones the **Live** and **Staging** templates into `/dist/`.
-> 
-> **_Must be run before using any other build tasks. Failure to do so will cause build tasks to fail._
-
--
 
 `npm start`
-> Starts the Squarespace Server, using content from `https://PROJECT_TITLE_SLUG-staging.squarespace.com` and serves files from `/dist/staging/template`
+> The following tasks are executed in parallel:
+> 
+> * Starts Squarespace Server, using content from `https://PROJECT_TITLE_SLUG-staging.squarespace.com` and serves files from `/dist/staging/template`.
+> 
+> * Watches files in `/src/scripts`, `/src/style/`, and `/src/template`.
+> 
+> * Also runs a Browsersync server in a parallel shell.
+> 
+> * When LESS and Javascript file changes are detected, the main files are compiled into `/src/template`.
+> 
+> * When changes are detected in `/src/template`, the **Staging** template is rebuilt, and browserync is reloaded.
 
 -
 
-`npm run test`
+`npm run server:live`
 > Starts the Squarespace Server, using content from `https://PROJECT_TITLE_SLUG.squarespace.com` and serves files from `/dist/staging/template`.
 
 -
@@ -175,25 +158,8 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 
 -
 
-`npm run build:dev`
-> The build task that compiles development ready code to the `/dist/staging/template` folder.
-> 
-> ** _Source maps included in js files_.
-
--
-
-`npm run watch`
-> The main watch task.
-> 
-> Watches files in `/src/scripts`, `/src/style/`, and `/src/template`.
-> 
-> Also runs a Browsersync server in a parallel shell.
-> 
-> When LESS and Javascript file changes are detected, the main files are compiled into `/src/template`.
-> 
-> When changes are detected in `/src/template`, the **Staging** template is rebuilt, and browserync is reloaded.
-> 
-> ** _Make sure you are running `npm start` in the background for Browsersync to work correctly_
+`npm run lint:js`
+> Lints js files located in `/src/scripts/app` using Eslint.
 
 -
 
