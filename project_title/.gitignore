@@ -28,6 +28,8 @@ lib-cov
 *.out
 *.pid
 npm-debug.log
+.npmrc
+.env
 
 
 
@@ -37,7 +39,7 @@ npm-debug.log
 #
 # Manage the actual Squarespace template in another repo
 ###############################################################################
-dist/**/template
+build
 
 
 
