@@ -1,20 +1,17 @@
 {
   "name": "squarespace-webpack-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A webpack boilerplate for building Squarespace templates",
-  "main": "index.js",
   "config": {
     "less_file": "./src/styles/main.less",
     "less_crit_file": "./src/styles/critical/critical.less",
     "css_file": "./src/template/styles/main.css",
     "css_crit_file": "./src/styles/critical/critical.css",
     "js_file_path": "./src/template/scripts/app/",
-    "staging_url": "https://PROJECT_URL-staging.squarespace.com",
-    "live_url": "https://PROJECT_URL.squarespace.com"
+    "staging_url": "https://mario-perez-3d4k-staging.squarespace.com",
+    "live_url": "https://mario-perez-44pl.squarespace.com"
   },
   "scripts": {
-    "postinstall": "npm run clone",
-    "prebuild": "npm run clean:live",
     "build": "npm-run-all compile:js:prod compile:css build:live",
     "build:live": "cp -av ./src/template/* ./dist/live/template/",
     "prebuild:staging": "npm run clean:staging",
@@ -23,10 +20,6 @@
     "clean:dist": "rm -rf ./dist/**/template/",
     "clean:live": "rm -rfv ./dist/live/template/*",
     "clean:staging": "rm -rfv ./dist/staging/template/*",
-    "preclone": "npm run clean:dist",
-    "clone": "npm-run-all clone:*",
-    "clone:staging": "cd ./dist/staging && git clone ${npm_package_config_staging_url}/template.git",
-    "clone:live": "cd ./dist/live && git clone ${npm_package_config_live_url}/template.git",
     "compile": "npm-run-all compile:*",
     "compile:css": "npm-run-all compile:css:*",
     "compile:css:main": "lessc $npm_package_config_less_file $npm_package_config_css_file --autoprefix='last 2 versions' --clean-css ",
@@ -52,6 +45,7 @@
   "author": "mario.perez415@gmail.com",
   "license": "MIT",
   "devDependencies": {
+    "@squarespace/toolbelt": "^0.7.10",
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.9",
     "babel-plugin-add-module-exports": "^0.2.1",
