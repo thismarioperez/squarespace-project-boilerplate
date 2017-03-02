@@ -30,7 +30,7 @@
     "watch:sync": "browser-sync start --proxy 'localhost:9000'",
     "pullmaster": "cd build && git init",
     "deploy": "rm -rf .npmrc ./build/.git && squarespace setup && NODE_ENV=production npm run build && squarespace deploy $npm_package_config_staging_repo",
-    "deploy:prod": "squarespace setup && NODE_ENV=production npm run build && squarespace deploy $npm_package_config_prod_repo"
+    "deploy:prod": "rm -rf .npmrc ./build/.git squarespace setup && NODE_ENV=production npm run build && squarespace deploy $npm_package_config_prod_repo"
   },
   "repository": {
     "type": "git",
