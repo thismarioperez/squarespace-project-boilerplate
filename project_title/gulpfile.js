@@ -10,9 +10,9 @@ const inline = require('gulp-inline');
  * into a critical.block file.
  */
 gulp.task('critical-block', function () {
-  return gulp.src('./src/styles/critical/critical.block')
+  return gulp.src('./template/styles/critical/critical.block')
     .pipe(inline({
-      base: './src/'
+      base: './template/'
     }))
-    .pipe(gulp.dest('./src/template/blocks/'));
+    .pipe(gulp.dest('./build/blocks/'));
 });

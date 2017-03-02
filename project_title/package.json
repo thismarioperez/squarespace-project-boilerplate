@@ -3,33 +3,29 @@
   "version": "1.0.1",
   "description": "A webpack boilerplate for building Squarespace templates",
   "config": {
-    "less_file": "./src/styles/main.less",
-    "less_crit_file": "./src/styles/critical/critical.less",
-    "css_file": "./src/template/styles/main.css",
-    "css_crit_file": "./src/styles/critical/critical.css",
-    "js_file_path": "./src/template/scripts/app/",
+    "less_file": "./template/styles/site.less",
+    "less_crit_file": "./template/styles/critical/critical.less",
+    "css_file": "./build/styles/site.css",
+    "css_crit_file": "./template/styles/critical/critical.css",
+    "js_file_path": "./template/scripts/",
     "staging_url": "https://mario-perez-3d4k-staging.squarespace.com",
-    "live_url": "https://mario-perez-44pl.squarespace.com"
+    "prod_url": "https://mario-perez-44pl.squarespace.com"
   },
   "scripts": {
-    "build": "npm-run-all compile:js:prod compile:css build:live",
-    "build:live": "cp -av ./src/template/* ./dist/live/template/",
-    "build:staging": "cp -av ./src/template/* ./dist/staging/template/",
-    "compile:css": "npm-run-all compile:css:*",
-    "compile:css:main": "lessc $npm_package_config_less_file $npm_package_config_css_file --autoprefix='last 2 versions' --clean-css ",
-    "compile:css:crit": "lessc $npm_package_config_less_crit_file $npm_package_config_css_crit_file --autoprefix='last 2 versions' --clean-css && gulp critical-block",
-    "postcompile:css:crit": "npm run clean:crit",
-    "compile:js": "webpack",
-    "compile:js:prod": "webpack -p",
+    "build": "squarespace assemble -d ./template -o ./build && npm run css && npm run js",
+    "css": "npm-run-all css:main css:crit",
+    "precss:main": "rm -rf ./build/styles/*",
+    "css:main": "lessc --clean-css --autoprefix='last 2 versions' $npm_package_config_less_file $npm_package_config_css_file",
+    "css:crit": "lessc --clean-css --autoprefix='last 2 versions' $npm_package_config_less_crit_file $npm_package_config_css_crit_file && gulp critical-block",
+    "postcss:crit": "rm -rf $npm_package_config_css_crit_file",
+    "js": "webpack --display-modules",
     "lint:js": "eslint $npm_package_config_js_file_path",
-    "server": "squarespace-server $npm_package_config_staging_url -d ./dist/staging/template",
-    "server:live": "squarespace-server $npm_package_config_live_url --auth -d ./dist/staging/template",
-    "prewatch": "npm-run-all compile build:staging",
-    "watch": "npm-run-all -p watch:*",
-    "watch:js": "chokidar './src/scripts/app/*' './src/scripts/app/**/*' -d 100 -c 'npm run compile:js'",
-    "watch:styles": "chokidar './src/styles/*.less' './src/styles/**/*.less' -d 100 -c 'npm run compile:css'",
-    "watch:template": "chokidar './src/template/*' './src/template/**/*' -d 100 -c 'npm run build:staging && browser-sync reload'",
-    "watch:sync": "browser-sync start --proxy 'localhost:9000'"
+    "server": "squarespace runserver $npm_package_config_staging_url --auth",
+    "sync": "npm run server & browser-sync start --proxy 'localhost:9000' --files 'build' ",
+    "watch": "npm run watch:template & npm run watch:js & npm run watch:css & npm run sync",
+    "watch:template": "squarespace assemble -d ./template -o ./build",
+    "watch:css": "chokidar './template/styles/*.less' './template/styles/**/*.less' -d 100 -c 'npm run css' --initial --logLevel debug",
+    "watch:js": "webpack --hide-modules --watch"
   },
   "repository": {
     "type": "git",
@@ -60,6 +56,7 @@
     "webpack": "^1.14.0"
   },
   "dependencies": {
+    "@squarespace/core": "^1.0.1",
     "jquery": "^3.1.1",
     "normalize.css": "^5.0.0"
   }
