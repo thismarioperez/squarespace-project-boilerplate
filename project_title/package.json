@@ -8,8 +8,8 @@
     "css_file": "./build/styles/site.css",
     "css_crit_file": "./build/blocks/critical.css",
     "js_file_path": "./scripts/",
-    "dev_repo": "https://mario-perez-3d4k-staging.squarespace.com/template.git",
-    "prod_repo": "https://mario-perez-44pl.squarespace.com/template.git"
+    "dev_repo": "https://project_title-staging.squarespace.com/template.git",
+    "prod_repo": "https://project_title.squarespace.com/template.git"
   },
   "scripts": {
     "postinstall": "squarespace setup",
