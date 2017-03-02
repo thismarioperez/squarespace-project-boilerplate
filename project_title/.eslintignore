@@ -17,5 +17,4 @@
 # Production-Ready JavaScript
 ###############################################################################
 
-src/template/**/*.js
-dist/template/**/*.js
+build/**/*.js

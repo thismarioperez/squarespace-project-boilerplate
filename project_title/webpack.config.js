@@ -1,47 +1,51 @@
+require('dotenv').config({ silent: true });
+
+const webpack = require('webpack');
 const path = require('path');
-// const webpack = require('webpack');
+const pkg = require(__dirname + '/package.json');
 
-module.exports = {
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-  devtool: 'inline-source-map',
+const siteJs = ['./scripts/site.js'];
 
-  resolve: {
-    root: path.resolve(__dirname)
-  },
-
+const config = {
+  devtool: IS_PRODUCTION ? false : 'source-map',
   entry: {
-    'app': path.resolve(__dirname, 'src/scripts/app/app.js')
+    'scripts/site-bundle': siteJs
   },
-
   output: {
-    path: path.resolve(__dirname, 'src/template/scripts/'),
+    path: path.resolve(__dirname, 'build'),
     filename: '[name].js'
   },
-
   module: {
-
-    preLoaders: [
-      // ESLint
-      {
-        test: /src\/scripts\/app\/.*\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      }
-    ],
-
     loaders: [
-      // Babel
       {
         test: /\.js$/,
-        include: path.join(__dirname, 'src', 'scripts', 'app'),
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: [
-            'es2015'
-          ]
-        }
+        loader: 'babel-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+
+    new webpack.optimize.OccurenceOrderPlugin(),
+
+    new webpack.DefinePlugin({
+      '__DEBUG__': JSON.stringify(!IS_PRODUCTION)
+    }),
+
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: !IS_PRODUCTION,
+      compress: IS_PRODUCTION ? {
+        drop_console: true, // eslint-disable-line camelcase
+        warnings: false
+      } : false,
+      mangle: IS_PRODUCTION ? {
+        except: ['_'] // don't mangle lodash
+      } : false
+    })
+  ]
 };
+
+module.exports = config;

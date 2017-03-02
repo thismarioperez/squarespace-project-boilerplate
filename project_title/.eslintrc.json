@@ -1,22 +1,8 @@
 {
-    "extends": "semistandard",
-    "installedESLint": true,
-    "env": {
-      "es6": true
-    },
-    "plugins": [
-        "standard",
-        "promise"
-    ],
-    "globals": {
-        "Modernizr": true,
-        "google": true,
-        "Y": true,
-        "ImageLoader": true,
-        "Static": true,
-        "Squarespace": true
-    },
-    "rules": {
-      "operator-assignment": 0
-    }
+  "extends": "eslint-config-squarespace/vanilla",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true
+  }
 }
