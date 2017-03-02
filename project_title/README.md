@@ -173,11 +173,16 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 
 `npm run deploy`
 > Deploys production ready code to a Development/Staging website.
+>
+> ** _Make sure you select `https://PROJECT_URL-staging.squarespace.com` when prompted_.
+> ** _This is_ **HIGHLY IMPORTANT!** _Select the wrong URL and you risk deploying code to an incorrect target_.
 
 -
 
 `npm run deploy:prod`
 > Deploys finalized production ready code to a Production website.
+> ** _Make sure you select `https://PROJECT_URL.squarespace.com` when prompted_.
+> ** _This is_ **HIGHLY IMPORTANT!** _Select the wrong URL and you risk deploying code to an incorrect target_.
 
 -
 
