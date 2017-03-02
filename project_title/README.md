@@ -17,9 +17,11 @@ Squarespace websites, by default, come with Git installed. Each Squarespace webs
 Here's a little bit about the technology used in this project.
 
 * Uses [npm scripts](https://docs.npmjs.com/misc/scripts) for the bulk of all task management instead of Grunt/Gulp.
+* Uses [@Squarespace/toolbelt](https://www.npmjs.com/package/@squarespace/toolbelt) for easy setup, build, server, and deploy tasks.
 * Custom modular JavaScript app. Mostly [ES6 spec](http://caniuse.com/#search=es6), transpiled with [Babel](https://github.com/babel/babel) and bundled with [Webpack](https://github.com/webpack/webpack) using the [Babel Loader](https://github.com/babel/babel-loader).
-* Linted with [ESlint](https://github.com/eslint/eslint). Documented with [JSDoc](https://github.com/jsdoc3/jsdoc) syntax.
+* Linted with [ESlint](https://github.com/eslint/eslint).
 * Modular CSS with LESS and Autoprefixing (last 2 versions of all browsers).
+* Special Critical/Above-The-Fold Stylesheet that is injected into the <head> of the site's template.
 
 
 
@@ -27,13 +29,13 @@ Here's a little bit about the technology used in this project.
 
 ### Access Privileges
 
-In order to work on this project you'll need access to some (or all) of these web services:
+In order to work on this project you'll need access to all of these web services:
 
 * **Top-level Code Repository** - Bitbucket
-    * [AUTHOR_NAME's Bitbucket team](https://bitbucket.org/TEAM_SLUG/PROJECT_TITLE_SLUG).
-* **Main Website (PROJECT_URL)** - Squarespace
+    * [AUTHOR_NAME's Bitbucket team](https://bitbucket.org/TEAM_SLUG/PROJECT_TITLE).
+* **Production Website (PROJECT_URL)** - Squarespace
     * You need Administrator Permissions for  [https://PROJECT_URL.squarespace.com](https://PROJECT_URL.squarespace.com)
-* **Staging Website (staging.PROJECT_URL)** - Squarespace
+* **Development Website (PROJECT_URL-staging)** - Squarespace
     * You need Administrator Permissions for  [https://PROJECT_URL-staging.squarespace.com](https://PROJECT_URL-staging.squarespace.com)
 
 
@@ -67,15 +69,15 @@ All build and watch tasks are run via `npm` using local dev dependencies.
 npm install
 ```
 
-All project dependencies should now be installed in the `node_modules` folder. A postinstall script will automatically clone the [Live Squarespace Template repository](https://PROJECT_URL.squarespace.com) and [Staging Squarespace Template repository](https://PROJECT_URL-staging.squarespace.com) into `dist/live` & `dist/staging`.
+All project dependencies should now be installed in the `node_modules` folder. A postinstall script will automatically build the template and place it in the `build` folder. This folder is ignored by git and should not be tracked. It's simply a place to temporarily store a development/production ready template for use with the Squarespace Server or for deployment to a Development/Production Squarespace Website.
 
 
 
 ### Local Development
 
-Squarespace is a software as a service platform so local development is limited. When working locally, create a branch on the **Staging** remote and test your updates locally using the [Squarespace Server](https://www.npmjs.com/package/@squarespace/server). The Squarespace Server allows you to authenticate with, and cache, a Squarespace website so you can work locally.
+Squarespace is a software as a service platform so local development is limited. Test your updates locally using the [Squarespace Server](https://www.npmjs.com/package/@squarespace/server). The Squarespace Server allows you to authenticate with, and cache, a Squarespace website so you can work locally.
 
-The node server has a configuration option to specify a Squarespace website to cache content from. This project has pre-configured scripts that connect to Main website at `https://PROJECT_URL.squarespace.com` and the Staging website at `https://PROJECT_URL-staging.squarespace.com`. The Squarespace Server authenticates to Squarespace using your Squarespace account. If you have **Administrator** access to both Main & Staging websites, it should work fine. The Squarespace Server allows you to test design and development updates locally while using a copy of the website content.
+The node server has a configuration option to specify a Squarespace website to cache content from. This project has pre-configured scripts that connect to the Production website at `https://PROJECT_URL.squarespace.com` and the Development website at `https://PROJECT_URL-staging.squarespace.com`. The Squarespace Server authenticates to Squarespace using your Squarespace account. If you have **Administrator** access to both Production & Development websites, it should work fine. The Squarespace Server allows you to test design and development updates locally while using a copy of the website content.
 
 Install the Squarespace Server globally.
 
@@ -83,46 +85,43 @@ Install the Squarespace Server globally.
 npm i -g @squarespace/server
 ```
 
-Once installed, run the server with:
+Once installed, you can run the server with:
 
 ```
 npm server
 ```
 
-This starts a Squarespace Server using template files from the **Staging** website located in `/dist/staging/template`.
+This starts a Squarespace Server using template files from the **Development** website.
 
 Once you've authenticated your connection to Squarespace with your username and password, you'll be able to view your cached website served by the Squarespace Server at: `localhost:9000`.
 
-Furthermore, you can test your template changes using content from your live site by running:
+Furthermore, you can test your template changes using content from your **Production** site by running:
 
 ```
-npm run server:live
+npm run server:prod
 ```
 
 
 ### Workflow
 
-This project relies on NPM scripts to build/compile everything. Right now there's a NPM task that watches your LESS and JavaScript files and automatically compiles them to folders located in `/src/template`. From there, another NPM task copies files in `/src/template` to `/dist/staging/template`. A Browsersync server is also fired up to proxy everything from `localhost:9000`(the port that the Squarespace Server is serving files to) to `localhost:3000`. Any time files are changed in the `/src/` folder, the **Staging** template is rebuilt and Browsersync is reloaded. To start up the watch task that compiles styles/scripts and starts a browsersync server, use:
+This project relies on NPM scripts to build/compile everything. The main "watch" task looks for changes in your template files located in the project root, then assembles them in the `build` folder.  This task will watch for changes in your LESS and JavaScript files and automatically re-compiles them to the appropriated folders located in the `build` folder. A Browsersync server is also fired up to proxy everything from `localhost:9000`(the port that the Squarespace Server is serving files to) to `localhost:3000`. Any time template files are changed in the root folder, the `build` template is updated and Browsersync is reloaded. To start up the watch task that compiles styles/scripts and starts the Squarespace and Browsersync servers, use:
 
 ```
 npm run watch
 ```
 
 
-### Staging
+### Development/Staging
 
-We have two repos (remotes) where we push the template code base to. When doing development, you should be working locally on a branch of the **Origin** of both **Main** and **Staging** repos, or just working locally on your machine.
+We have one repo (remote) where we push the template code base to. When doing development, you should be working locally on a branch of **Origin**.
 
-When updates are ready for live testing, run `npm run build:dev` to build the **Staging** template, then `git merge` your local branch to the **Staging** master branch. After that, just `git push` to the Squarespace servers. This will put your updates live to `https://PROJECT_TITLE_SLUG-staging.squarespace.com`.
+When updates are ready for live testing, run `npm run deploy` to build the **Development** template. This will push your updates live to `https://PROJECT_URL-staging.squarespace.com`.
 
 
 
 ### Production
 
-After updates have been live tested on Staging, we can work to get these into production by running `npm run build` to build your live template in `/dist/live/template`. Then merge your changes to the **Main** master branch, and push to the **Main** remote.
-
-This process should be reworked to keep everything in sync with developers on the project. Currently we do not have a code review or pull request workflow, but it's probably recommended that we start.
-
+After updates have been live tested on the development website, we can get our work into production by running `npm run deploy:prod` to push our changes to the live production website located at `https://PROJECT_URL.squarespace.com`.
 
 
 ##Build Tasks
@@ -134,33 +133,52 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 `npm start`
 > The following tasks are executed in parallel:
 >
-> * Starts Squarespace Server, using content from `https://PROJECT_TITLE_SLUG-staging.squarespace.com` and serves files from `/dist/staging/template`.
+> * Assembles template files from root to `build`.
 >
-> * Watches files in `/src/scripts`, `/src/style/`, and `/src/template`.
+> * Starts Squarespace Server, using content from `https://PROJECT_URL-staging.squarespace.com` and serves files from `/build`.
 >
-> * Also runs a Browsersync server in a parallel shell.
+> * Also runs a Browsersync server in a parallel shell that proxys the Squarespace Server.
 >
-> * When LESS and Javascript file changes are detected, the main files are compiled into `/src/template`.
+> * Watches template files in `/scripts`, `/styles/`, `/assets/`, `/bocks/`, `/collections/`, and `./`.
 >
-> * When changes are detected in `/src/template`, the **Staging** template is rebuilt, and browserync is reloaded.
+> * When LESS and Javascript file changes are detected, the main files are compiled into `/build/scripts/` or `/build/styles/`, and browserync is reloaded.
+>
+> * When template file changes are detected, the template is rebuilt into `build`, and browserync is reloaded.
 
 -
 
 `npm run server:live`
-> Starts the Squarespace Server, using content from `https://PROJECT_TITLE_SLUG.squarespace.com` and serves files from `/dist/staging/template`.
+> Starts the Squarespace Server, using content from `https://PROJECT_URL.squarespace.com` and serves files from `/build`.
 
 -
 
 `npm run build`
-> The main build task that compiles production ready code to the `/dist/live/template` folder.
+> The build task that compiles development code to the `/build` folder.
+>
+> ** _Does not remove source maps from js files_.
+
+-
+
+`npm run build:prod`
+> The main build task that compiles production ready code to the `/build` folder.
 >
 > ** _Removes source maps from js files_.
 
 -
 
 `npm run lint:js`
-> Lints js files located in `/src/scripts/app` using Eslint.
+> Lints js files located in `/scripts/` using Eslint.
 
 -
 
-Refer to this project's `package.json` file to see what npm scripts power these main build tasks.
+`npm run deploy`
+> Deploys production ready code to a Development/Staging website.
+
+-
+
+`npm run deploy:prod`
+> Deploys finalized production ready code to a Production website.
+
+-
+
+Refer to this project's `package.json` file to see what other npm scripts power these main build tasks.
