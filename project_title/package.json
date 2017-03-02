@@ -12,7 +12,7 @@
     "prod_repo": "https://PROJECT_URL.squarespace.com/template.git"
   },
   "scripts": {
-    "postinstall": "squarespace setup",
+    "postinstall": "npm run build",
     "build": "NODE_ENV=development squarespace assemble && npm-run-all css js",
     "build:prod": "NODE_ENV=production npm run build",
     "build:clean": "rm -rf ./build/git & squarespace clean -d ./build",

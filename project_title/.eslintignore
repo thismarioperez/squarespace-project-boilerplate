@@ -8,8 +8,7 @@
 # JavaScript libraries
 ###############################################################################
 
-# src/scripts/lib/*.js
-# src/scripts/lib/**/*.js
+/node_modules/
 
 
 
@@ -17,4 +16,4 @@
 # Production-Ready JavaScript
 ###############################################################################
 
-build/**/*.js
+build/scripts/
