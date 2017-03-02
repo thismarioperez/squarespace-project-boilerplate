@@ -7,7 +7,7 @@ PROJECT_TITLE SS7
 ## Project Overview
 The PROJECT_TITLE project is a complex web-app built on the Squarespace developer platform introduced for Squarespace 7. This repo is used to build custom scripts, styles, layouts, and more for a developer-mode-enabled Squarespace site.
 
-Squarespace websites, by default, come with Git installed. Each Squarespace website is essentially running live on its own master branch and we cannot change that. Use this project to manage the source files that will ultimately be bundled into a template folder to be pushed to either a Staging or Live Squarespace site.
+Squarespace websites, by default, come with Git installed. Each Squarespace website is essentially running live on its own master branch and we cannot change that. Use this project to manage the source files that will ultimately be bundled into a template folder to be pushed to either a Development/Staging or Production/Live Squarespace site.
 
 
 ## Project Details
