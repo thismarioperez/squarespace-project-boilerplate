@@ -12,6 +12,7 @@
     "prod_repo": "https://mario-perez-44pl.squarespace.com/template.git"
   },
   "scripts": {
+    "postinstall": "squarespace setup",
     "build": "NODE_ENV=development squarespace assemble && npm-run-all css js",
     "build:prod": "NODE_ENV=production npm run build",
     "build:clean": "rm -rf ./build/git & squarespace clean -d ./build",
