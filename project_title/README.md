@@ -21,7 +21,7 @@ Here's a little bit about the technology used in this project.
 * Custom modular JavaScript app. Mostly [ES6 spec](http://caniuse.com/#search=es6), transpiled with [Babel](https://github.com/babel/babel) and bundled with [Webpack](https://github.com/webpack/webpack) using the [Babel Loader](https://github.com/babel/babel-loader).
 * Linted with [ESlint](https://github.com/eslint/eslint).
 * Modular CSS with LESS and Autoprefixing (last 2 versions of all browsers).
-* Special Critical/Above-The-Fold Stylesheet that is injected into the <head> of the site's template.
+* Special Critical/Above-The-Fold Stylesheet that is injected into the `<head>` of the site's template.
 
 
 
