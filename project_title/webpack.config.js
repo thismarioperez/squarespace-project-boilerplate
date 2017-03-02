@@ -6,7 +6,7 @@ const pkg = require(__dirname + '/package.json');
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-const siteJs = ['./template/scripts/site.js'];
+const siteJs = ['./scripts/site.js'];
 
 const config = {
   devtool: IS_PRODUCTION ? false : 'source-map',

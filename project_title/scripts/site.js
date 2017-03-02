@@ -4,7 +4,7 @@
 //
 // http://github.com/squarespace/squarespace-core
 
-let ImageLoader = require('@squarespace/core/imageLoader');
+const ImageLoader = require('@squarespace/core/imageLoader');
 
 window.addEventListener('DOMContentLoaded', function() {
 
