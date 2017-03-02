@@ -3,6 +3,9 @@
 # Ignores files managed with Git.
 ###############################################################################
 
+
+
+
 ###############################################################################
 # Dependencies
 #
@@ -11,7 +14,6 @@
 
 node_modules/
 bower_components/
-js/lib/*
 
 
 
@@ -47,17 +49,13 @@ build
 ###############################################################################
 # Compiled files that do not need to be tracked
 ###############################################################################
-src/template/scripts/app.js
-src/template/styles/main.css
-src/template/blocks/critical.block
+
 
 
 
 ###############################################################################
 # Keep these files
 ###############################################################################
-# Keep both live and staging folders
-!dist/**/.gitkeep
 
 
 
