@@ -21,7 +21,7 @@
     "styles": "squarespace clean -d ./build/styles && npm-run-all styles:*",
     "styles:sqs": "cp $npm_package_config_sqs_less_src $npm_package_config_sqs_less_dest",
     "styles:main": "lessc --clean-css --autoprefix='last 2 versions' $npm_package_config_less_file $npm_package_config_css_file",
-    "styles:crit": "lessc --clean-css --autoprefix='last 2 versions' $npm_package_config_less_crit_file $npm_package_config_css_crit_file && gulp critical-block",
+    "styles:crit": "cp -f ./blocks/critical.block ./build/blocks/ && lessc --clean-css --autoprefix='last 2 versions' $npm_package_config_less_crit_file $npm_package_config_css_crit_file && gulp critical-block",
     "poststyles": "rm -rf $npm_package_config_css_crit_file",
     "js": "squarespace clean -d ./build/scripts && webpack --display-modules",
     "lint:js": "eslint $npm_package_config_js_file_path",
