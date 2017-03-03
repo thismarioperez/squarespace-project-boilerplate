@@ -9,7 +9,7 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const siteJs = ['./scripts/site.js'];
 
 const config = {
-  devtool: IS_PRODUCTION ? false : 'source-map',
+  devtool: IS_PRODUCTION ? false : 'inline-source-map',
   entry: {
     'scripts/site-bundle': siteJs
   },
