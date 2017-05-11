@@ -11,7 +11,7 @@
     "css_crit_file": "./build/blocks/critical.css",
     "js_file_path": "./scripts/",
     "dev_repo": "https://PROJECT_URL-staging.squarespace.com/template.git",
-    "prod_repo": "https://PROJECT_URL.squarespace.com/template.git"
+    "prod_repo": "https://PROJECT_URL-production.squarespace.com/template.git"
   },
   "scripts": {
     "postinstall": "npm run build",
