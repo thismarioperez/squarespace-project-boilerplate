@@ -33,8 +33,8 @@ In order to work on this project you'll need access to all of these web services
 
 * **Top-level Code Repository** - Bitbucket
     * [AUTHOR_NAME's Bitbucket team](https://bitbucket.org/TEAM_SLUG/PROJECT_TITLE).
-* **Production Website (PROJECT_URL)** - Squarespace
-    * You need Administrator Permissions for  [https://PROJECT_URL.squarespace.com](https://PROJECT_URL.squarespace.com)
+* **Production Website (PROJECT_URL-production)** - Squarespace
+    * You need Administrator Permissions for  [https://PROJECT_URL-production.squarespace.com](https://PROJECT_URL-production.squarespace.com)
 * **Development Website (PROJECT_URL-staging)** - Squarespace
     * You need Administrator Permissions for  [https://PROJECT_URL-staging.squarespace.com](https://PROJECT_URL-staging.squarespace.com)
 
@@ -77,7 +77,7 @@ All project dependencies should now be installed in the `node_modules` folder. A
 
 Squarespace is a software as a service platform so local development is limited. Test your updates locally using the [Squarespace Server](https://www.npmjs.com/package/@squarespace/server). The Squarespace Server allows you to authenticate with, and cache, a Squarespace website so you can work locally.
 
-The node server has a configuration option to specify a Squarespace website to cache content from. This project has pre-configured scripts that connect to the Production website at `https://PROJECT_URL.squarespace.com` and the Development website at `https://PROJECT_URL-staging.squarespace.com`. The Squarespace Server authenticates to Squarespace using your Squarespace account. If you have **Administrator** access to both Production & Development websites, it should work fine. The Squarespace Server allows you to test design and development updates locally while using a copy of the website content.
+The node server has a configuration option to specify a Squarespace website to cache content from. This project has pre-configured scripts that connect to the Production website at `https://PROJECT_URL-production.squarespace.com` and the Development website at `https://PROJECT_URL-staging.squarespace.com`. The Squarespace Server authenticates to Squarespace using your Squarespace account. If you have **Administrator** access to both Production & Development websites, it should work fine. The Squarespace Server allows you to test design and development updates locally while using a copy of the website content.
 
 Install the Squarespace Server globally.
 
@@ -121,7 +121,7 @@ When updates are ready for live testing, run `npm run deploy` to build the **Dev
 
 ### Production
 
-After updates have been live tested on the development website, we can get our work into production by running `npm run deploy:prod` to push our changes to the live production website located at `https://PROJECT_URL.squarespace.com`.
+After updates have been live tested on the development website, we can get our work into production by running `npm run deploy:prod` to push our changes to the live production website located at `https://PROJECT_URL-production.squarespace.com`.
 
 
 ##Build Tasks
@@ -148,7 +148,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 -
 
 `npm run server:live`
-> Starts the Squarespace Server, using content from `https://PROJECT_URL.squarespace.com` and serves files from `/build`.
+> Starts the Squarespace Server, using content from `https://PROJECT_URL-production.squarespace.com` and serves files from `/build`.
 
 -
 
@@ -181,7 +181,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 
 `npm run deploy:prod`
 > Deploys finalized production ready code to a Production website.
-> ** _Make sure you select `https://PROJECT_URL.squarespace.com` when prompted_.
+> ** _Make sure you select `https://PROJECT_URL-production.squarespace.com` when prompted_.
 > ** _This is_ **HIGHLY IMPORTANT!** _Select the wrong URL and you risk deploying code to an incorrect target_.
 
 -

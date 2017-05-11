@@ -11,9 +11,9 @@
     "less_crit_file": "./styles/critical/critical.less",
     "css_crit_file": "./build/blocks/critical.css",
     "js_file_path": "./scripts/",
-    "dev_url": "https://PROJECT_URLstaging.squarespace.com",
+    "dev_url": "https://PROJECT_URL-staging.squarespace.com",
     "dev_repo": "https://PROJECT_URL-staging.squarespace.com/template.git",
-    "prod_url": "https://PROJECT_URLproduction.squarespace.com",
+    "prod_url": "https://PROJECT_URL-production.squarespace.com",
     "prod_repo": "https://PROJECT_URL-production.squarespace.com/template.git"
   },
   "scripts": {
