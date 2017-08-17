@@ -29,10 +29,10 @@
     "poststyles": "rm -rf $npm_package_config_css_crit_file",
     "js": "squarespace clean -d ./build/scripts && webpack --display-exclude --progress",
     "lint:js": "eslint $npm_package_config_js_file_path",
-    "server": "squarespace runserver $npm_package_config_dev_url --auth",
-    "server:prod": "squarespace-server $npm_package_config_prod_url -d ./build",
-    "start": "rm -rf .npmrc && squarespace setup && (npm-run-all --parallel server watch)",
-    "start:prod": "rm -rf .npmrc && squarespace setup && (npm-run-all --parallel server:prod watch)",
+    "server": "squarespace-server $npm_package_config_dev_url -d ./build --auth",
+    "server:prod": "squarespace-server $npm_package_config_prod_url -d ./build --auth",
+    "start": "(npm-run-all --parallel server watch)",
+    "start:prod": "(npm-run-all --parallel server:prod watch)",
     "watch": "npm run build && npm-run-all --parallel watch:*",
     "watch:js": "chokidar './scripts/**/*' -d 100 -c 'npm run js && browser-sync reload'",
     "watch:styles": "chokidar './styles/**/*' -d 100 -c 'npm run styles && browser-sync reload'",
@@ -40,8 +40,8 @@
     "watch:sync": "browser-sync start --proxy 'localhost:9000'",
     "clone:dev": "npm run build:clean && git clone $npm_package_config_dev_repo ./build",
     "clone:prod": "npm run build:clean && git clone $npm_package_config_prod_repo ./build",
-    "deploy": "rm -rf .npmrc ./build & squarespace setup && npm-run-all clone:dev build:prod && squarespace deploy $npm_package_config_dev_repo",
-    "deploy:prod": "rm -rf .npmrc ./build & squarespace setup && npm-run-all clone:prod build:prod && squarespace deploy $npm_package_config_prod_repo"
+    "deploy": "rm -rf ./build && npm-run-all clone:dev build:prod && squarespace deploy $npm_package_config_dev_repo",
+    "deploy:prod": "rm -rf ./build && npm-run-all clone:prod build:prod && squarespace deploy $npm_package_config_prod_repo"
   },
   "repository": {
     "type": "git",
