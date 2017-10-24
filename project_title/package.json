@@ -59,8 +59,6 @@
     "eslint": "^3.12.1",
     "eslint-config-squarespace": "^1.0.0",
     "eslint-loader": "^1.6.1",
-    "gulp": "^3.9.1",
-    "gulp-inline": "^0.1.2",
     "less": "^2.7.1",
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-clean-css": "^1.5.1",
