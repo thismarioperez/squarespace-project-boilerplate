@@ -2,7 +2,6 @@ require('dotenv').config({ silent: true });
 
 const webpack = require('webpack');
 const path = require('path');
-const pkg = require(__dirname + '/package.json');
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
@@ -18,19 +17,24 @@ const config = {
     filename: '[name].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env'],
+            plugins: [
+              require('babel-plugin-add-module-exports'),
+              require('babel-plugin-transform-runtime')
+            ]
+          }
+        }
       }
     ]
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-
-    new webpack.optimize.OccurenceOrderPlugin(),
-
     new webpack.DefinePlugin({
       '__DEBUG__': JSON.stringify(!IS_PRODUCTION)
     }),
