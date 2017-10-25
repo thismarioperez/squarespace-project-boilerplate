@@ -20,6 +20,22 @@ const config = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'eslint-loader',
+            options: {
+              configFile: './.eslintrc',
+              emitWarning: true,
+              emitError: true,
+              failOnError: IS_PRODUCTION ? true : false
+            }
+          }
+        ]
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
@@ -41,7 +57,8 @@ const config = {
           fallback: 'style-loader',
           use: [
             { loader: 'css-loader' },
-            { loader: 'postcss-loader',
+            {
+              loader: 'postcss-loader',
               options: {
                 plugins: () => [
                   require('autoprefixer')({ browsers: ['last 2 versions'] }),
