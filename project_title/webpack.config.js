@@ -1,6 +1,7 @@
 require('dotenv').config({ silent: true });
 
 const webpack = require('webpack');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const path = require('path');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
@@ -66,7 +67,9 @@ const config = {
       mangle: IS_PRODUCTION ? {
         except: ['_'] // don't mangle lodash
       } : false
-    })
+    }),
+
+    new ProgressBarPlugin()
   ],
   stats: {
     env: true,

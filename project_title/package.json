@@ -15,7 +15,7 @@
     "lint:js": "eslint ./scripts/",
     "less": "lessc --clean-css --autoprefix='last 2 versions' ./styles/site.less ./build/styles/site.css",
     "styles": "rsync ./styles/* ./build/styles -aP --exclude=site.less --exclude=*/",
-    "js": "webpack --progress",
+    "js": "webpack",
     "server": "npm run server:sqs:staging & (browser-sync start --proxy 'localhost:9000')",
     "server:prod": "npm run server:sqs:production & (browser-sync start --proxy 'localhost:9000')",
     "server:sqs:staging": "squarespace runserver $npm_package_config_staging_url -d ./build --auth",
@@ -57,6 +57,7 @@
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-clean-css": "^1.5.1",
     "npm-run-all": "^4.0.2",
+    "progress-bar-webpack-plugin": "^1.10.0",
     "webpack": "^3.8.1"
   },
   "dependencies": {
