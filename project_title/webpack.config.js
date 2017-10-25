@@ -1,7 +1,8 @@
 require('dotenv').config({ silent: true });
 
 const webpack = require('webpack');
-const ETP = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const path = require('path');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
@@ -53,7 +54,7 @@ const config = {
       },
       {
         test: /\.(css|less)$/,
-        loader: ETP.extract({
+        loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             { loader: 'css-loader' },
@@ -88,8 +89,14 @@ const config = {
       } : false
     }),
 
-    new ETP('./styles/[name].css')
-  ]
+    new ExtractTextPlugin('./styles/[name].css'),
+
+    new ProgressBarPlugin()
+  ],
+  stats: {
+    env: true,
+    modules: false,
+  }
 };
 
 module.exports = config;
