@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "A webpack boilerplate for building Squarespace templates",
   "config": {
-    "staging_url": "https://mario-perez-3d4k-staging.squarespace.com",
-    "production_url": "https://mario-perez-3d4k-production.squarespace.com"
+    "staging_url": "https://PROJECT_URL-staging.squarespace.com",
+    "production_url": "https://PROJECT_URL-production.squarespace.com"
   },
   "scripts": {
     "postinstall": "npm run build",
