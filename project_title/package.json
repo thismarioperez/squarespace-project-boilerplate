@@ -3,8 +3,8 @@
   "version": "2.0.1",
   "description": "A boilerplate for building Squarespace templates",
   "config": {
-    "staging_url": "https://PROJECT_URL-staging.squarespace.com",
-    "production_url": "https://PROJECT_URL-production.squarespace.com"
+    "staging_url": "https://mario-perez-3d4k-staging.squarespace.com",
+    "production_url": "https://mario-perez-3d4k-production.squarespace.com"
   },
   "scripts": {
     "postinstall": "npm run build",
@@ -52,7 +52,6 @@
     "eslint": "^4.9.0",
     "eslint-config-squarespace": "^1.0.1",
     "eslint-loader": "^1.9.0",
-    "extract-text-webpack-plugin": "^3.0.1",
     "less": "^2.7.3",
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-clean-css": "^1.5.1",
