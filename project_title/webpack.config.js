@@ -8,14 +8,12 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const config = {
   devtool: IS_PRODUCTION ? false : 'inline-source-map',
   entry: {
-    site: [
-      './scripts/site.js',
-    ]
+    site: './scripts/site.js'
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'build/scripts/'),
     publicPath: '/',
-    filename: 'scripts/[name]-bundle.js',
+    filename: '[name]-bundle.js',
   },
   module: {
     rules: [
@@ -77,7 +75,8 @@ const config = {
   ],
   stats: {
     env: true,
-    modules: false
+    modules: true,
+    exclude: /node_modules/
   }
 };
 
