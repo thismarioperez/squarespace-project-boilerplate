@@ -36,6 +36,7 @@
   "devDependencies": {
     "@squarespace/toolbelt": "^0.8.4",
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.23.0",
