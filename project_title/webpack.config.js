@@ -4,16 +4,18 @@ const webpack = require('webpack');
 const ETP = require('extract-text-webpack-plugin');
 const path = require('path');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
-const siteJs = 'site';
-const siteCss = 'site';
-
 
 const config = {
   devtool: IS_PRODUCTION ? false : 'inline-source-map',
-  entry: './scripts/' + siteJs + '.js',
+  entry: {
+    site: [
+      './scripts/site.js',
+      './styles/site.less'
+    ]
+  },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'scripts/' + siteJs + '-bundle.js'
+    filename: 'scripts/[name]-bundle.js',
   },
   module: {
     rules: [
@@ -69,7 +71,7 @@ const config = {
       } : false
     }),
 
-    new ETP('./styles/' + siteCss + '.css')
+    new ETP('./styles/[name].css')
   ]
 };
 
