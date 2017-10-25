@@ -1,5 +1,3 @@
-import '../styles/site.less';
-
 // Use the sqs-core module to access core Squarespace
 // functionality, like Lifecycle and ImageLoader. For
 // full documentation, go to:
