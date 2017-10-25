@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "npm run build",
-    "build": "NODE_ENV=development squarespace assemble && npm run styles & webpack",
+    "build": "NODE_ENV=development squarespace assemble && npm run styles & webpack --progress",
     "build:prod": "NODE_ENV=production npm run build",
     "build:clean": "rm -rf ./build",
     "styles": "rm -rf ./build/styles/**/ && rm ./build/styles/site.less",
@@ -20,7 +20,7 @@
     "start": "(npm-run-all --parallel server watch)",
     "start:prod": "(npm-run-all --parallel server:prod watch)",
     "watch": "npm run build && npm-run-all --parallel watch:*",
-    "watch:webpack": "chokidar './scripts/**/*' './styles/site.less' './styles/(collections|core|modules)/*.less' -d 200 -c 'webpack && browser-sync reload'",
+    "watch:webpack": "chokidar './scripts/**/*' './styles/site.less' './styles/(collections|core|modules)/*.less' -d 200 -c 'webpack --progress && browser-sync reload'",
     "watch:build": "chokidar './assets/**/*' './blocks/*' './collections/*' './styles/!(site).less' '*.region' 'template.conf' -d 200 -c 'npm run build && browser-sync reload'",
     "clone:staging": "npm run build:clean && git clone $npm_package_config_staging_url/template.git ./build",
     "clone:prod": "npm run build:clean && git clone $npm_package_config_production_url/template.git ./build",
@@ -36,7 +36,6 @@
   "devDependencies": {
     "@squarespace/toolbelt": "^0.8.4",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -55,7 +54,6 @@
     "less-plugin-clean-css": "^1.5.1",
     "npm-run-all": "^4.0.2",
     "postcss-loader": "^2.0.8",
-    "progress-bar-webpack-plugin": "^1.10.0",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1"
   },
