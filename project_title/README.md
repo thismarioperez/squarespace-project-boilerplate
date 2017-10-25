@@ -145,7 +145,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 
 -
 
-`npm run server:prod`
+`npm run start:live`
 > Starts the Squarespace Server, using content from `https://PROJECT_URL-production.squarespace.com` and serves files from `/build`.
 
 -
