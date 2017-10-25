@@ -147,7 +147,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 
 -
 
-`npm run server:live`
+`npm run server:prod`
 > Starts the Squarespace Server, using content from `https://PROJECT_URL-production.squarespace.com` and serves files from `/build`.
 
 -
@@ -174,15 +174,14 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 `npm run deploy`
 > Deploys production ready code to a Development/Staging website.
 >
-> ** _Make sure you select `https://PROJECT_URL-staging.squarespace.com` when prompted_.
-> ** _This is_ **HIGHLY IMPORTANT!** _Select the wrong URL and you risk deploying code to an incorrect target_.
-
+> ** _Make sure your `package.json` file includes `https://PROJECT_URL-staging.squarespace.com` as the value for the `dev_repo` key._.
+> ** _This is_ **HIGHLY IMPORTANT!** _Use the wrong URL and you risk deploying code to an incorrect target_.
 -
 
 `npm run deploy:prod`
 > Deploys finalized production ready code to a Production website.
-> ** _Make sure you select `https://PROJECT_URL-production.squarespace.com` when prompted_.
-> ** _This is_ **HIGHLY IMPORTANT!** _Select the wrong URL and you risk deploying code to an incorrect target_.
+> ** _Make sure your `package.json` file includes `https://PROJECT_URL-production.squarespace.com` as the value for the `prod_repo` key_.
+> ** _This is_ **HIGHLY IMPORTANT!** _Use the wrong URL and you risk deploying code to an incorrect target_.
 
 -
 
