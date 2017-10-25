@@ -1,7 +1,6 @@
 require('dotenv').config({ silent: true });
 
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
@@ -10,7 +9,6 @@ const config = {
   entry: {
     site: [
       './scripts/site.js',
-      './styles/site.less'
     ]
   },
   output: {
@@ -51,25 +49,6 @@ const config = {
             }
           }
         ]
-      },
-      {
-        test: /\.(css|less)$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            { loader: 'css-loader' },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: () => [
-                  require('autoprefixer')({ browsers: ['last 2 versions'] }),
-                  require('cssnano')({})
-                ]
-              }
-            },
-            { loader: 'less-loader' }
-          ]
-        })
       }
     ]
   },
@@ -87,9 +66,7 @@ const config = {
       mangle: IS_PRODUCTION ? {
         except: ['_'] // don't mangle lodash
       } : false
-    }),
-
-    new ExtractTextPlugin('./styles/[name].css'),
+    })
   ],
   stats: {
     env: true,
