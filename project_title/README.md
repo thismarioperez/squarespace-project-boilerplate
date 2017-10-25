@@ -141,9 +141,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 >
 > * Watches template files in `/scripts`, `/styles/`, `/assets/`, `/bocks/`, `/collections/`, and `./`.
 >
-> * When LESS and Javascript file changes are detected, the main files are compiled into `/build/scripts/` or `/build/styles/`, and browserync is reloaded.
->
-> * When template file changes are detected, the template is rebuilt into `build`, and browserync is reloaded.
+> * When file changes are detected, the changed files are re-compiled into `/build`, and browserync is reloaded.
 
 -
 
@@ -155,14 +153,15 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 `npm run build`
 > The build task that compiles development code to the `/build` folder.
 >
-> ** _Does not remove source maps from js files_.
+> ** _Does not remove source maps from nor minifies js files_.
 
 -
 
 `npm run build:prod`
 > The main build task that compiles production ready code to the `/build` folder.
 >
-> ** _Removes source maps from js files_.
+> ** _Removes source maps from js and css files_.
+> ** _Minifies js files_.
 
 -
 
@@ -171,16 +170,16 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 
 -
 
-`npm run deploy`
+`npm run stage`
 > Deploys production ready code to a Development/Staging website.
 >
-> ** _Make sure your `package.json` file includes `https://PROJECT_URL-staging.squarespace.com` as the value for the `dev_repo` key._.
+> ** _Make sure your `package.json` file includes `https://PROJECT_URL-staging.squarespace.com` as the value for the `staging_url` key located under `config`._.
 > ** _This is_ **HIGHLY IMPORTANT!** _Use the wrong URL and you risk deploying code to an incorrect target_.
 -
 
-`npm run deploy:prod`
+`npm run deploy`
 > Deploys finalized production ready code to a Production website.
-> ** _Make sure your `package.json` file includes `https://PROJECT_URL-production.squarespace.com` as the value for the `prod_repo` key_.
+> ** _Make sure your `package.json` file includes `https://PROJECT_URL-production.squarespace.com` as the value for the `production_url` key located under `config`._.
 > ** _This is_ **HIGHLY IMPORTANT!** _Use the wrong URL and you risk deploying code to an incorrect target_.
 
 -
