@@ -8,10 +8,10 @@
   },
   "scripts": {
     "postinstall": "npm run build",
-    "build": "NODE_ENV=development squarespace assemble && npm run clean:styles && webpack --progress",
+    "build": "NODE_ENV=development squarespace assemble && webpack --progress",
     "build:prod": "NODE_ENV=production npm run build",
     "build:clean": "rm -rf ./build",
-    "clean:styles": "rm -rf ./build/styles/**/ && rm ./build/styles/site.less",
+    "postbuild": "rm -rf ./build/styles/**/ && rm ./build/styles/site.less",
     "lint:js": "eslint ./scripts/",
     "server": "npm run server:sqs:staging & (browser-sync start --proxy 'localhost:9000')",
     "server:prod": "npm run server:sqs:production & (browser-sync start --proxy 'localhost:9000')",
