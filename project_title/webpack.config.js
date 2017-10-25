@@ -69,11 +69,15 @@ const config = {
       } : false
     }),
 
-    new ProgressBarPlugin()
+    new ProgressBarPlugin({
+      clear: false,
+      complete: '+',
+      summary: false
+    })
   ],
   stats: {
     env: true,
-    modules: false,
+    modules: false
   }
 };
 
