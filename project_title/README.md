@@ -124,10 +124,9 @@ When updates are ready for live testing, run `npm run deploy` to build the **Dev
 After updates have been live tested on the development website, we can get our work into production by running `npm run deploy:prod` to push our changes to the live production website located at `https://PROJECT_URL-production.squarespace.com`.
 
 
+
 ### Build Tasks
 These are the main NPM scripts you'll use to build/compile/watch files in this project.
-
--
 
 
 `npm start`
