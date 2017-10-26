@@ -104,10 +104,10 @@ npm run server:prod
 
 ### Workflow
 
-This project relies on NPM scripts to build/compile everything. The main "watch" task looks for changes in your template files located in the project root, then assembles them in the `build` folder.  This task will watch for changes in your LESS and JavaScript files and automatically re-compiles them to the appropriated folders located in the `build` folder. A Browsersync server is also fired up to proxy everything from `localhost:9000`(the port that the Squarespace Server is serving files to) to `localhost:3000`. Any time template files are changed in the root folder, the `build` template is updated and Browsersync is reloaded. To start up the watch task that compiles styles/scripts and starts the Squarespace and Browsersync servers, use:
+This project relies on NPM scripts to build/compile everything. The main "start" task looks for changes in your template files located in the project root, then assembles them in the `build` folder.  This task will watch for changes in your LESS and JavaScript files and automatically re-compiles them to the appropriated folders located in the `build` folder. A Browsersync server is also fired up to proxy everything from `localhost:9000`(the port that the Squarespace Server is serving files to) to `localhost:3000`. Any time template files are changed in the root folder, the `build` template is updated and Browsersync is reloaded. To start up the watch task that compiles styles/scripts and starts the Squarespace and Browsersync servers, use:
 
 ```
-npm run watch
+npm start
 ```
 
 
@@ -124,7 +124,7 @@ When updates are ready for live testing, run `npm run deploy` to build the **Dev
 After updates have been live tested on the development website, we can get our work into production by running `npm run deploy:prod` to push our changes to the live production website located at `https://PROJECT_URL-production.squarespace.com`.
 
 
-##Build Tasks
+### Build Tasks
 These are the main NPM scripts you'll use to build/compile/watch files in this project.
 
 -
@@ -146,7 +146,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 -
 
 `npm run start:live`
-> Starts the Squarespace Server, using content from `https://PROJECT_URL-production.squarespace.com` and serves files from `/build`.
+> Just like the main start task but using content from `https://PROJECT_URL-production.squarespace.com`.
 
 -
 
@@ -160,8 +160,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 `npm run build:prod`
 > The main build task that compiles production ready code to the `/build` folder.
 >
-> ** _Removes source maps from js and css files_.
-> ** _Minifies js files_.
+> ** _Removes source maps from and minifies js files_.
 
 -
 
@@ -178,7 +177,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 -
 
 `npm run deploy`
-> Deploys finalized production ready code to a Production website.
+> Deploys production ready code to a Production website.
 > ** _Make sure your `package.json` file includes `https://PROJECT_URL-production.squarespace.com` as the value for the `production_url` key located under `config`._.
 > ** _This is_ **HIGHLY IMPORTANT!** _Use the wrong URL and you risk deploying code to an incorrect target_.
 
