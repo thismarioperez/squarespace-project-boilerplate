@@ -17,7 +17,7 @@
             {.end}
           {.end}
         </span>
-          
+
       {.or}
 
         {.section collection}
@@ -31,6 +31,6 @@
         {.end}
 
       {.end}
-      
+
   {.end}
 </nav>
