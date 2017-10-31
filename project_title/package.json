@@ -13,7 +13,7 @@
     "build:prod": "NODE_ENV=production squarespace assemble && webpack",
     "clean": "rm -rf ./build/",
     "lint:js": "eslint ./source/js/",
-    "watch": "squarespace assemble --watch & webpack --env=sandbox --watch",
+    "watch": "(squarespace assemble --watch & webpack --env=sandbox --watch)",
     "server": "npm run build && npm-run-all --parallel server:stage server:proxy",
     "server:live": "npm run build && npm-run-all --parallel server:prod server:proxy",
     "server:prod": "squarespace runserver $npm_package_config_production_url -d ./build --auto-reload --auth",
