@@ -8,12 +8,11 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const config = {
   devtool: IS_PRODUCTION ? false : 'inline-source-map',
   entry: {
-    app: './scripts/app.js'
+    app: path.resolve( __dirname, "source/js/app.js" ),
   },
   output: {
-    path: path.resolve(__dirname, 'build/assets/js/'),
-    publicPath: '/',
-    filename: '[name].js',
+    path: path.resolve( __dirname, "build", "scripts" ),
+    filename: "[name].js"
   },
   module: {
     rules: [
