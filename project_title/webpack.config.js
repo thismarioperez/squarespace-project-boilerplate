@@ -8,7 +8,7 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const config = {
   devtool: IS_PRODUCTION ? false : 'inline-source-map',
   entry: {
-    site: './scripts/site.js'
+    app: './scripts/app.js'
   },
   output: {
     path: path.resolve(__dirname, 'build/scripts/'),
