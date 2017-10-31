@@ -9,8 +9,8 @@
   "scripts": {
     "postinstall": "npm run build",
     "start": "npm-run-all --parallel server watch",
-    "build": "NODE_ENV=development squarespace assemble && webpack",
-    "build:prod": "NODE_ENV=production squarespace assemble && webpack",
+    "build": "squarespace assemble && NODE_ENV=development webpack",
+    "build:prod": "squarespace assemble && NODE_ENV=production webpack",
     "watch": "squarespace assemble -wT & webpack --env=sandbox --watch",
     "server": "npm run server:sqs:stage & browser-sync start --proxy 'localhost:9000'",
     "server:live": "npm run server:sqs:prod & browser-sync start --proxy 'localhost:9000'",
@@ -38,7 +38,6 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.18.5",
-    "dotenv": "^4.0.0",
     "eslint": "^4.9.0",
     "eslint-config-squarespace": "^1.0.1",
     "eslint-loader": "^1.9.0",
@@ -49,7 +48,6 @@
     "less-plugin-clean-css": "^1.5.1",
     "npm-run-all": "^4.0.2",
     "postcss-loader": "^2.0.8",
-    "progress-bar-webpack-plugin": "^1.10.0",
     "webpack": "^3.8.1"
   },
   "dependencies": {
