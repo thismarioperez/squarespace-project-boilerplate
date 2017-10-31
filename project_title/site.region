@@ -36,7 +36,7 @@
       <squarespace:block-field id="footer-blocks" columns="12" />
     </footer>
 
-    <script type="text/javascript" src="/scripts/app?v={squarespace.template-revision}.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
 
     {squarespace-footers}
 
