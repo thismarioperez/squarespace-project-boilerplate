@@ -8,11 +8,11 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const config = {
   devtool: IS_PRODUCTION ? false : 'inline-source-map',
   entry: {
-    app: path.resolve( __dirname, "source/js/app.js" ),
+    app: path.resolve( __dirname, 'source/js/app.js' ),
   },
   output: {
-    path: path.resolve( __dirname, "build", "scripts" ),
-    filename: "[name].js"
+    path: path.resolve( __dirname, 'build', 'scripts' ),
+    filename: '[name].js',
   },
   module: {
     rules: [
@@ -46,6 +46,22 @@ const config = {
               ]
             }
           }
+        ]
+      },
+      {
+        test: /\.(css|less)$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                require('autoprefixer')({ browsers: ['last 2 versions'] }),
+                require('cssnano')({})
+              ]
+            }
+          },
+          { loader: 'less-loader' }
         ]
       }
     ]
