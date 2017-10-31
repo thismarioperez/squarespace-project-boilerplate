@@ -11,9 +11,9 @@ const config = {
     app: './scripts/app.js'
   },
   output: {
-    path: path.resolve(__dirname, 'build/scripts/'),
+    path: path.resolve(__dirname, 'build/assets/js/'),
     publicPath: '/',
-    filename: '[name]-bundle.js',
+    filename: '[name].js',
   },
   module: {
     rules: [
