@@ -1,40 +1,24 @@
-require('dotenv').config({ silent: true });
 const path = require('path');
 const root = path.resolve(__dirname);
 const source = path.join(root, 'source');
 const nodeModules = 'node_modules';
 const webpack = require('webpack');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: IS_PRODUCTION ? false : 'inline-source-map',
 
   plugins: [
-    new webpack.DefinePlugin({
-      '__DEBUG__': JSON.stringify(!IS_PRODUCTION)
-    }),
-
     new webpack.optimize.UglifyJsPlugin({
-      beautify: !IS_PRODUCTION,
-      compress: IS_PRODUCTION ? {
-        drop_console: true, // eslint-disable-line camelcase
-        warnings: false
-      } : false,
-      mangle: IS_PRODUCTION ? {
-        except: ['_'] // don't mangle lodash
-      } : false
-    }),
-
-    new ProgressBarPlugin({
-      clear: false,
-      complete: '+',
-      summary: false
+      sourceMap: IS_PRODUCTION ? false : true, // must be enabled here for devtool source-map to work.
+      output: { comments: !IS_PRODUCTION, beautify: !IS_PRODUCTION },
+      compress: IS_PRODUCTION ? { drop_console: true } : false, // eslint-disable-line camelcase
+      mangle: IS_PRODUCTION ? { except: ['_'] } : false // don't mangle lodash
     })
   ],
 
   stats: {
-    env: true,
+    colors: true,
     modules: true,
     exclude: /node_modules/
   },
