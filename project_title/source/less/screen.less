@@ -1,32 +1,25 @@
-@import './core/index';
+/******************************************************************************
+ * Config
+*******************************************************************************/
+@import "config/color";
+@import "config/mixins";
 
-body {
-  max-width: 650px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6em;
-}
+/******************************************************************************
+ * Core
+*******************************************************************************/
+@import "core/reset";
+@import "core/fonts";
+@import "core/layout";
+@import "core/document";
+@import "core/typography";
 
-h1 {
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.2em;
-  a {
-    text-decoration: none;
-    color: black;
-  }
-}
+/******************************************************************************
+ * Modules
+*******************************************************************************/
+@import "modules/nav";
+@import "modules/footer";
 
-nav {
-  margin-bottom: 20px;
-}
-
-footer {
-  font-size: 80%;
-}
-
-@import './collections/index';
-@import './modules/index';
+/******************************************************************************
+ * Collections
+*******************************************************************************/
+@import "collections/gallery";
