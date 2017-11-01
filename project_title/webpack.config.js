@@ -39,24 +39,34 @@ module.exports = {
 
   module: {
     rules: [
-      { test: /source\/js\/.*\.js$/, exclude: /node_modules/, use: ['eslint-loader'], enforce: 'pre' },
-      { test: /source\/js\/.*\.js$/, exclude: /node_modules/, use: [{
-        loader: 'babel-loader',
-        options: {
-          presets: ['env'],
-          plugins: [
-            require('babel-plugin-add-module-exports'),
-            require('babel-plugin-transform-runtime')] }
-      }] },
+      // JS Linter
+      { test: /source\/js\/.*\.js$/,
+        exclude: /node_modules/,
+        use: ['eslint-loader'],
+        enforce: 'pre'
+      },
+
+      // Handle JS files
+      { test: /source\/js\/.*\.js$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: 'babel-loader',
+            options: {
+              presets: ['env'],
+              plugins: [require('babel-plugin-add-module-exports'), require('babel-plugin-transform-runtime')]
+            }
+          }
+        ]
+      },
+
+      // Handle Less files
       { test: /\.(css|less)$/,
         use: [
-          'file-loader?name=../styles/[name].css',
+          { loader: 'file-loader',
+            options: { name: '[name].css', outputPath: '../styles/' }
+          },
           { loader: 'postcss-loader',
-            options: {
-              plugins: () => [
-                require('autoprefixer')({ browsers: ['last 2 versions'] }),
-              ]
-            }
+            options: { plugins: () => [require('autoprefixer')({ browsers: ['last 2 versions'] })] }
           },
           { loader: 'less-loader' }
         ]
