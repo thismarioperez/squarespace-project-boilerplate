@@ -98,13 +98,13 @@ Once you've authenticated your connection to Squarespace with your username and 
 Furthermore, you can test your template changes using content from your **Production** site by running:
 
 ```
-npm run server:prod
+npm run server:test
 ```
 
 
 ### Workflow
 
-This project relies on NPM scripts to build/compile everything. The main "start" task looks for changes in your template files located in the project root, then assembles them in the `build` folder.  This task will watch for changes in your LESS and JavaScript files and automatically re-compiles them to the appropriated folders located in the `build` folder. A Browsersync server is also fired up to proxy everything from `localhost:9000`(the port that the Squarespace Server is serving files to) to `localhost:3000`. Any time template files are changed in the root folder, the `build` template is updated and Browsersync is reloaded. To start up the watch task that compiles styles/scripts and starts the Squarespace and Browsersync servers, use:
+This project relies on NPM scripts to build/compile everything. The main "start" task looks for changes in your template files located in the project root, then assembles them into the `build` directory.  This task will watch for changes in your LESS and JavaScript files and automatically re-compiles them into the appropriate locations located in the `build` directory. A Browsersync server is also fired up to proxy everything from `localhost:9000`(the port that the Squarespace Server is serving files to) to `localhost:3000`. Any time template files are changed in the root directory, the `build` directory is updated and Browsersync is reloaded. To start up the watch task that compiles styles/scripts and starts the Squarespace and Browsersync servers, use:
 
 ```
 npm start
@@ -113,15 +113,15 @@ npm start
 
 ### Development/Staging
 
-We have one repo (remote) where we push the template code base to. When doing development, you should be working locally on a branch of **Origin**.
+We have two repos (remotes) where we push the template code base to. When doing development, you should be working locally on a branch of **Origin**.
 
-When updates are ready for live testing, run `npm run deploy` to build the **Development** template. This will push your updates live to `https://PROJECT_URL-staging.squarespace.com`.
+When updates are ready for live testing, run `npm run stage` to build the **Development** template. This will push your updates live to `https://PROJECT_URL-staging.squarespace.com`.
 
 
 
 ### Production
 
-After updates have been live tested on the development website, we can get our work into production by running `npm run deploy:prod` to push our changes to the live production website located at `https://PROJECT_URL-production.squarespace.com`.
+After updates have been live tested on the development website, we can get our work into production by running `npm run deploy` to push our changes to the live production website located at `https://PROJECT_URL-production.squarespace.com`.
 
 
 
@@ -138,25 +138,25 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 >
 > * Also runs a Browsersync server in a parallel shell that proxys the Squarespace Server.
 >
-> * Watches template files in `/scripts`, `/styles/`, `/assets/`, `/bocks/`, `/collections/`, and `./`.
+> * Watches template files in the root direcory and js/less files in the `source` directory.
 >
-> * When file changes are detected, the changed files are re-compiled into `/build`, and browserync is reloaded.
+> * When file changes are detected, the changed files are re-compiled into `/build`, and the squarespace server is reloaded.
 
 -
 
-`npm run start:live`
-> Just like the main start task but using content from `https://PROJECT_URL-production.squarespace.com`.
+`npm run test`
+> Just like the main start task but uses content served from `https://PROJECT_URL-production.squarespace.com`.
 
 -
 
-`npm run build`
+`npm run dev`
 > The build task that compiles development code to the `/build` folder.
 >
 > ** _Does not remove source maps from nor minifies js files_.
 
 -
 
-`npm run build:prod`
+`npm run production`
 > The main build task that compiles production ready code to the `/build` folder.
 >
 > ** _Removes source maps from and minifies js files_.
@@ -164,7 +164,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 -
 
 `npm run lint:js`
-> Lints js files located in `/scripts/` using Eslint.
+> Lints js files located in `/source/scripts/` directory using Eslint.
 
 -
 
