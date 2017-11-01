@@ -9,9 +9,10 @@
   "scripts": {
     "postinstall": "npm run dev",
     "start": "npm-run-all --parallel server watch",
+    "test": "npm-run-all --parallel server:live watch",
     "dev": "squarespace assemble && NODE_ENV=development webpack",
     "production": "squarespace assemble && NODE_ENV=production webpack",
-    "watch": "squarespace assemble -wT & NODE_ENV=development webpack --watch --colors",
+    "watch": "squarespace assemble -wT & NODE_ENV=development webpack --watch",
     "server": "npm run server:sqs:stage & browser-sync start --proxy 'localhost:9000'",
     "server:live": "npm run server:sqs:prod & browser-sync start --proxy 'localhost:9000'",
     "server:sqs:prod": "squarespace runserver $npm_package_config_production_url -d ./build --auto-reload --auth",
@@ -30,7 +31,8 @@
   "author": "name@domain.com",
   "license": "MIT",
   "devDependencies": {
-    "@squarespace/toolbelt": "^0.8.4",
+    "@squarespace/toolbelt": "^0.8.7",
+    "autoprefixer": "^7.1.6",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
@@ -44,8 +46,6 @@
     "file-loader": "^1.1.5",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
-    "less-plugin-autoprefix": "^1.5.1",
-    "less-plugin-clean-css": "^1.5.1",
     "npm-run-all": "^4.0.2",
     "postcss-loader": "^2.0.8",
     "webpack": "^3.8.1"
