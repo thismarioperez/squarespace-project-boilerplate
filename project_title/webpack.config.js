@@ -24,8 +24,7 @@ module.exports = {
   },
 
   resolve: {
-    modules: [root, source, nodeModules],
-    mainFields: ['webpack', 'browserify', 'web', 'main']
+    modules: [root, source, nodeModules]
   },
 
   entry: {
