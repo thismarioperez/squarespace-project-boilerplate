@@ -1,21 +1,60 @@
 require( '../less/screen.less' );
 
-// Use the sqs-core module to access core Squarespace
-// functionality, like Lifecycle and ImageLoader. For
-// full documentation, go to:
-//
-// http://github.com/squarespace/squarespace-core
+import * as core from './core';
 
-const ImageLoader = require('@squarespace/core/imageLoader');
+/**
+ *
+ * @public
+ * @class App
+ * @classdesc Load the App application Class to handle it ALL.
+ *
+ */
+class App {
+  constructor() {
+    this.core = core;
 
-window.addEventListener('DOMContentLoaded', function() {
-
-  let images = document.querySelectorAll('img[data-src]');
-
-  for (let i = 0; i < images.length; i++) {
-    ImageLoader.load(images[i], {
-      load: true
-    });
+    this.bindEvents();
+    this.initModules();
   }
 
-});
+  /**
+   *
+   * @public
+   * @instance
+   * @method initModules
+   * @memberof App
+   * @description Initialize modules.
+   *
+   */
+  initModules() {
+    let images = document.querySelectorAll('img[data-src]');
+    core.util.loadImages(images);
+  }
+
+  /**
+   *
+   * @public
+   * @instance
+   * @method bindEvents
+   * @memberof App
+   * @description Bind top-level app events.
+   *
+   */
+  bindEvents() {
+    window.addEventListener('resize', function() {
+      let images = document.querySelectorAll('img[src]');
+      core.util.loadImages(images);
+    });
+  }
+}
+
+/******************************************************************************
+ * Expose
+*******************************************************************************/
+window.app = new App();
+
+
+/******************************************************************************
+ * Export
+*******************************************************************************/
+export default window.app;
