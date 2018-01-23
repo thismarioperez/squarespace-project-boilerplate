@@ -2,6 +2,11 @@ require( '../less/screen.less' );
 
 import * as core from './core';
 
+const loadImages = () => {
+  let images = document.querySelectorAll('img[data-src]');
+  core.util.loadImages(images);
+};
+
 /**
  *
  * @public
@@ -27,8 +32,19 @@ class App {
    *
    */
   initModules() {
-    let images = document.querySelectorAll('img[data-src]');
-    core.util.loadImages(images);
+    // Log environment
+    this.core.log('App:env:' + this.core.env.ENV);
+
+    // core
+    this.core.detect.init();
+
+    // utility
+
+    // misc/test
+    loadImages();
+
+    // Log when finished
+    this.core.log('App: modules initialized');
   }
 
   /**
@@ -41,10 +57,7 @@ class App {
    *
    */
   bindEvents() {
-    window.addEventListener('resize', function() {
-      let images = document.querySelectorAll('img[src]');
-      core.util.loadImages(images);
-    });
+    window.addEventListener('resize', loadImages);
   }
 }
 

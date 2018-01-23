@@ -3,24 +3,36 @@ const root = path.resolve(__dirname);
 const source = path.join(root, 'source');
 const nodeModules = 'node_modules';
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const browsers = ['last 2 versions', 'ios >= 9'];
+const extractLess = new ExtractTextPlugin({
+  filename: '../assets/styles/[name].css'
+});
+const CleanUpStatsPlugin = require('./webpack.cleanup-stats-plugin');
 
 module.exports = {
   devtool: IS_PRODUCTION ? false : 'inline-source-map',
 
   plugins: [
-    new BabiliPlugin({},
-    {
-      sourceMap: IS_PRODUCTION ? false : true, // must be enabled here for devtool source-map to work.
-      compress: IS_PRODUCTION ? true : false, // eslint-disable-line camelcase
-    }),
     // Give the app scripts access to node environment variable.
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
+    }),
+
+    new CleanUpStatsPlugin(),
+
+    extractLess,
+
+    new BabiliPlugin({
+      // mangle: IS_PRODUCTION ? { blacklist: ['_'] } : false // don't mangle lodash
+    },
+    {
+      sourceMap: IS_PRODUCTION ? false : true, // must be enabled here for devtool source-map to work.
+      compress: IS_PRODUCTION ? true : false, // eslint-disable-line camelcase
     })
   ],
 
@@ -74,15 +86,21 @@ module.exports = {
 
       // Handle Less files
       { test: /\.(css|less)$/,
-        use: [
-          { loader: 'file-loader',
-            options: { name: '[name].css', outputPath: '../styles/' }
-          },
-          { loader: 'postcss-loader',
-            options: { plugins: () => [require('autoprefixer')({ browsers: browsers })] }
-          },
-          { loader: 'less-loader' }
-        ]
+        use: extractLess.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: IS_PRODUCTION ? true : false
+              }
+            },
+            { loader: 'postcss-loader',
+              options: { plugins: () => [require('autoprefixer')({ browsers: browsers })] }
+            },
+            { loader: 'less-loader' }
+          ],
+          fallback: 'style-loader'
+        })
       }
     ]
   }
