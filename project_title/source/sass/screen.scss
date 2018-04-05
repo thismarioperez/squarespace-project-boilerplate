@@ -1,36 +1,36 @@
 /******************************************************************************
  * Config
 *******************************************************************************/
-@import "config/_color";
-@import "config/_mixins";
+@import "config/variables";
+@import "config/mixins";
 
 /******************************************************************************
  * Core
 *******************************************************************************/
-@import "core/_reset";
-@import "core/_fonts";
-@import "core/_layout";
-@import "core/_document";
-@import "core/_typography";
+@import "core/reset";
+@import "core/fonts";
+@import "core/layout";
+@import "core/document";
+@import "core/typography";
 
 /******************************************************************************
  * Modules
 *******************************************************************************/
-@import "modules/_nav";
-@import "modules/_footer";
+@import "modules/nav";
+@import "modules/footer";
 
 /******************************************************************************
  * Collections
 *******************************************************************************/
-@import "collections/_gallery";
+@import "collections/gallery";
 
 /******************************************************************************
  * SQS
 *******************************************************************************/
-@import "sqs/_blocks";
+@import "sqs/blocks";
 
 /******************************************************************************
  * States
 *******************************************************************************/
-@import "state/_states";
-@import "state/_hovers";
+@import "state/states";
+@import "state/hovers";

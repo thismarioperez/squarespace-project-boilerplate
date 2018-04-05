@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const browsers = ['last 2 versions', 'ios >= 9'];
-const extractLess = new ExtractTextPlugin({
+const extractSass = new ExtractTextPlugin({
   filename: '../assets/styles/[name].css'
 });
 const CleanUpStatsPlugin = require('./webpack.cleanup-stats-plugin');
@@ -25,7 +25,7 @@ module.exports = {
 
     new CleanUpStatsPlugin(),
 
-    extractLess,
+    extractSass,
 
     new BabiliPlugin({
       // mangle: IS_PRODUCTION ? { blacklist: ['_'] } : false // don't mangle lodash
@@ -84,9 +84,9 @@ module.exports = {
         ]
       },
 
-      // Handle Less files
-      { test: /\.(css|less)$/,
-        use: extractLess.extract({
+      // Handle Sass files
+      { test: /\.(css|scss)$/,
+        use: extractSass.extract({
           use: [
             {
               loader: 'css-loader',
@@ -97,7 +97,7 @@ module.exports = {
             { loader: 'postcss-loader',
               options: { plugins: () => [require('autoprefixer')({ browsers: browsers })] }
             },
-            { loader: 'less-loader' }
+            { loader: 'sass-loader' }
           ],
           fallback: 'style-loader'
         })

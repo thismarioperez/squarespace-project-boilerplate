@@ -1,4 +1,4 @@
-require( '../less/screen.less' );
+require( '../sass/screen.scss' );
 
 import * as core from './core';
 
