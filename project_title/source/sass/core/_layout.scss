@@ -1,41 +1,35 @@
 /******************************************************************************
- * Core/Layout
+ ** Core/Layout
 *******************************************************************************/
 /////////////////////////////////////////////////////////////////////////////////
 // Use these variables for consistent media queries:
-//
 // @media #{$large} {
 //   //Content for large screens here
 // }
-//
-// ** These dimensions mirror those from boostrap-grid **
-// ** @See:
-// ** https://scotch.io/tutorials/default-sizes-for-twitter-bootstraps-media-queries
 /////////////////////////////////////////////////////////////////////////////////
-
 /* Custom, iPhone Retina */
-$xx-small: "only screen and (min-width : 320px)";
+$xx-small: "only screen and (min-width : #{$bp-xx-small})";
 /*Only xx-small screens*/
-$xx-small-only: "only screen and (min-width : 320px) and (max-width : 479px)";
+$xx-small-only: "only screen and (min-width : #{$bp-xx-small}) and (max-width : #{$bp-xx-small-only})";
 
 /* Extra Small Devices, Phones */
-$x-small: "only screen and (min-width : 480px)";
+$x-small: "only screen and (min-width : #{$bp-x-small})";
 /*Only x-small screens*/
-$x-small-only: "only screen and (min-width : 480px) and (max-width : 767px)";
+$x-small-only: "only screen and (min-width : #{$bp-x-small}) and (max-width : #{$bp-x-small-only})";
 
 /* Small Devices, Tablets */
-$small: "only screen and (min-width : 768px)";
+$small: "only screen and (min-width : #{$bp-small})";
 /*Only small screens*/
-$small-only: "only screen and (min-width : 768px) and (max-width : 991px)";
+$small-only: "only screen and (min-width : #{$bp-small}) and (max-width : #{$bp-small-only})";
 /* Below small screens*/
-$small-below: "only screen and (max-width: 768px)";
+$small-below: "only screen and (max-width: #{$bp-small})";
 
 /* Medium Devices, Desktops */
-$medium: "only screen and (min-width : 992px)";
+$medium: "only screen and (min-width : #{$bp-medium})";
 /*Only medium screens*/
-$medium-only: "only screen and (min-width : 992px) and (max-width : 1200px)";
+$medium-only: "only screen and (min-width : #{$bp-medium}) and (max-width : #{$bp-medium-only})";
 /* Below medium screens*/
-$medium-below: "only screen and (max-width: 992px)";
+$medium-below: "only screen and (max-width: #{$bp-medium})";
 
 /* Large Devices, Wide Screens */
-$large: "only screen and (min-width : 1200px)";
+$large: "only screen and (min-width : #{$bp-large})";

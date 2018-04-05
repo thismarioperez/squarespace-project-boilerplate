@@ -2,3 +2,49 @@
  * Colors
 *******************************************************************************/
 $black: #000;
+
+
+/******************************************************************************
+ * Breakpoints
+ * These dimensions mirror those from boostrap-grid
+ * @See: https://scotch.io/tutorials/default-sizes-for-twitter-bootstraps-media-queries
+*******************************************************************************/
+/* Custom, iPhone Retina */
+$bp-xx-small:320px;
+$bp-x-small:480px;
+$bp-small:768px;
+$bp-medium:992px;
+$bp-large:1200px;
+$bp-xx-small-only: ($bp-x-small - 1px);
+$bp-x-small-only: ($bp-small - 1px);
+$bp-small-only: ($bp-medium - 1px);
+$bp-medium-only: ($bp-large - 1px);
+
+
+/******************************************************************************
+ * Layering
+*******************************************************************************/
+$z-layer-10: 100;
+$z-layer-09: 90;
+$z-layer-08: 80;
+$z-layer-07: 70;
+$z-layer-06: 60;
+$z-layer-05: 50;
+$z-layer-04: 40;
+$z-layer-03: 30;
+$z-layer-02: 20;
+$z-layer-01: 10;
+$z-layer-behind: -1;
+$z-layer-infront: 1000;
+
+
+/******************************************************************************
+ * Animations
+*******************************************************************************/
+$ease: cubic-bezier( .63, .01, .53, .91 );
+$ease-one: cubic-bezier( .6, 0, .6, 1 );
+$ease-two: cubic-bezier( 0.14, 1, 0.34, 1 );
+$ease-three: cubic-bezier( 0, 0, 0.2, 1 );
+$base-duration: 200ms;
+$base-duration-two: 400ms;
+$base-duration-three: 600ms;
