@@ -7,15 +7,18 @@
 //   //Content for large screens here
 // }
 /////////////////////////////////////////////////////////////////////////////////
+
 /* Custom, iPhone Retina */
 $xx-small: "only screen and (min-width : #{$bp-xx-small})";
 /*Only xx-small screens*/
 $xx-small-only: "only screen and (min-width : #{$bp-xx-small}) and (max-width : #{$bp-xx-small-only})";
 
+
 /* Extra Small Devices, Phones */
 $x-small: "only screen and (min-width : #{$bp-x-small})";
 /*Only x-small screens*/
 $x-small-only: "only screen and (min-width : #{$bp-x-small}) and (max-width : #{$bp-x-small-only})";
+
 
 /* Small Devices, Tablets */
 $small: "only screen and (min-width : #{$bp-small})";
@@ -24,12 +27,14 @@ $small-only: "only screen and (min-width : #{$bp-small}) and (max-width : #{$bp-
 /* Below small screens*/
 $small-below: "only screen and (max-width: #{$bp-small})";
 
+
 /* Medium Devices, Desktops */
 $medium: "only screen and (min-width : #{$bp-medium})";
 /*Only medium screens*/
 $medium-only: "only screen and (min-width : #{$bp-medium}) and (max-width : #{$bp-medium-only})";
 /* Below medium screens*/
 $medium-below: "only screen and (max-width: #{$bp-medium})";
+
 
 /* Large Devices, Wide Screens */
 $large: "only screen and (min-width : #{$bp-large})";
