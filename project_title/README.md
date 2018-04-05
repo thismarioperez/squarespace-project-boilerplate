@@ -20,7 +20,7 @@ Here's a little bit about the technology used in this project.
 * Uses [@Squarespace/toolbelt](https://www.npmjs.com/package/@squarespace/toolbelt) for easy setup, build, server, and deploy tasks.
 * Custom modular JavaScript app. Mostly [ES6 spec](http://caniuse.com/#search=es6), transpiled with [Babel](https://github.com/babel/babel) and bundled with [Webpack](https://github.com/webpack/webpack) using the [Babel Loader](https://github.com/babel/babel-loader).
 * Linted with [ESlint](https://github.com/eslint/eslint).
-* Modular CSS with LESS and Autoprefixing (last 2 versions of all browsers).
+* Modular CSS with SASS and Autoprefixing (last 2 versions of all browsers).
 * Special Critical/Above-The-Fold Stylesheet that is injected into the `<head>` of the site's template.
 
 
@@ -104,7 +104,7 @@ npm run server:test
 
 ### Workflow
 
-This project relies on NPM scripts to build/compile everything. The main "start" task looks for changes in your template files located in the project root, then assembles them into the `build` directory.  This task will watch for changes in your LESS and JavaScript files and automatically re-compiles them into the appropriate locations located in the `build` directory. A Browsersync server is also fired up to proxy everything from `localhost:9000`(the port that the Squarespace Server is serving files to) to `localhost:3000`. Any time template files are changed in the root directory, the `build` directory is updated and Browsersync is reloaded. To start up the watch task that compiles styles/scripts and starts the Squarespace and Browsersync servers, use:
+This project relies on NPM scripts to build/compile everything. The main "start" task looks for changes in your template files located in the project root, then assembles them into the `build` directory.  This task will watch for changes in your SASS and JavaScript files and automatically re-compiles them into the appropriate locations located in the `build` directory. A Browsersync server is also fired up to proxy everything from `localhost:9000`(the port that the Squarespace Server is serving files to) to `localhost:3000`. Any time template files are changed in the root directory, the `build` directory is updated and Browsersync is reloaded. To start up the watch task that compiles styles/scripts and starts the Squarespace and Browsersync servers, use:
 
 ```
 npm start
@@ -138,7 +138,7 @@ These are the main NPM scripts you'll use to build/compile/watch files in this p
 >
 > * Also runs a Browsersync server in a parallel shell that proxys the Squarespace Server.
 >
-> * Watches template files in the root direcory and js/less files in the `source` directory.
+> * Watches template files in the root direcory and js/sass files in the `source` directory.
 >
 > * When file changes are detected, the changed files are re-compiled into `/build`, and the squarespace server is reloaded.
 
