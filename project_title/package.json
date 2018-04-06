@@ -3,8 +3,8 @@
   "version": "2.0.1",
   "description": "A boilerplate for building Squarespace templates",
   "config": {
-    "staging_url": "https://mp-sqs-staging.squarespace.com",
-    "production_url": "https://mp-sqs-production.squarespace.com"
+    "staging_url": "https://PROJECT_URL-staging.squarespace.com",
+    "production_url": "https://PROJECT_URL-production.squarespace.com"
   },
   "scripts": {
     "postinstall": "cd ./node_modules/properjs-hobo && npm install && npm run build -- 'is not next prev attr remove append one parent closest' && cd ../../ npm run dev",
