@@ -25,15 +25,16 @@ const detect = {
 
     // Touch support mode
     if (this._isTouch) {
-      dom.html.classList.add('is-touchable');
+      dom.html.addClass('is-touchable');
 
       // Mouse support mode
     } else {
-      dom.html.classList.add('is-hoverable');
+      dom.html.addClass('is-hoverable');
     }
 
     log('detect: initialized');
   },
+
 
   /**
    *
@@ -47,6 +48,7 @@ const detect = {
   isMobile() {
     return this._isMobile;
   },
+
 
   /**
    *
@@ -62,6 +64,7 @@ const detect = {
     return this._isTouch;
   },
 
+
   /**
    *
    * @public
@@ -73,7 +76,35 @@ const detect = {
    */
   isDevice() {
     return (this._isTouch && this._isMobile);
+  },
+
+
+  /**
+   *
+   * @private
+   * @name whichTransitionEvent
+   * @description Get the transition event name
+   * @see  adapted from Modernizr: https://modernizr.com
+   */
+  whichTransitionEvent() {
+    const el = document.createElement('fakeelement');
+    const transitions = {
+      'transition': 'transitionend',
+      'OTransition': 'oTransitionEnd',
+      'MozTransition': 'transitionend',
+      'WebkitTransition': 'webkitTransitionEnd'
+    };
+
+    for (var t in transitions) {
+      if (el.style[t] !== undefined) {
+        return transitions[t];
+      }
+    }
   }
 };
 
+
+/******************************************************************************
+ * Export
+*******************************************************************************/
 export default detect;

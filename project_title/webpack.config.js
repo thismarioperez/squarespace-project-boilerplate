@@ -43,7 +43,8 @@ module.exports = {
   },
 
   resolve: {
-    modules: [root, source, nodeModules]
+    modules: [root, source, nodeModules],
+    mainFields: ['webpack', 'browserify', 'web', 'hobo', 'main']
   },
 
   entry: {
@@ -83,6 +84,9 @@ module.exports = {
           }
         ]
       },
+
+      // Expose custom properjs-hobo build
+      { test: /(hobo|hobo.build)\.js$/, use: ['expose-loader?hobo'] },
 
       // Handle Sass files
       { test: /\.(css|scss)$/,

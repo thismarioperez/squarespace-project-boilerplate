@@ -3,11 +3,11 @@
   "version": "2.0.1",
   "description": "A boilerplate for building Squarespace templates",
   "config": {
-    "staging_url": "https://PROJECT_URL-staging.squarespace.com",
-    "production_url": "https://PROJECT_URL-production.squarespace.com"
+    "staging_url": "https://mp-sqs-staging.squarespace.com",
+    "production_url": "https://mp-sqs-production.squarespace.com"
   },
   "scripts": {
-    "postinstall": "npm run dev",
+    "postinstall": "cd ./node_modules/properjs-hobo && npm install && npm run build -- 'is not next prev attr remove append one parent closest' && cd ../../ npm run dev",
     "start": "npm-run-all --parallel server watch",
     "test": "npm-run-all --parallel server:test watch",
     "dev": "squarespace assemble && NODE_ENV=development webpack",
@@ -44,6 +44,7 @@
     "eslint": "^4.9.0",
     "eslint-config-squarespace": "^1.0.1",
     "eslint-loader": "^1.9.0",
+    "expose-loader": "^0.7.5",
     "extract-text-webpack-plugin": "^3.0.2",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
@@ -57,6 +58,7 @@
   "dependencies": {
     "@squarespace/core": "^1.0.1",
     "eventemitter3": "^2.0.3",
-    "normalize.css": "^7.0.0"
+    "normalize.css": "^7.0.0",
+    "properjs-hobo": "^0.3.18"
   }
 }

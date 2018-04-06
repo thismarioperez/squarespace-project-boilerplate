@@ -3,42 +3,42 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="initial-scale=1">
+    <!-- main stylesheet -->
+    <link rel="stylesheet" href="/assets/styles/app.css?v={squarespace.template-revision}">
+    <!-- js polyfills -->
+    <script data-name="polyfills" src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
     {squarespace-headers}
   </head>
   <body id="{squarespace.page-id}" class="{squarespace.page-classes}">
 
-    <div id="app">
+    <header class="header js-header">
+      {.section website}
+        <h1>
+          <a href="/" data-content-field="site-title">
+            {.section logoImageUrl}
+            <img src="{logoImageUrl}?format=original" alt="{siteTitle}" />
+            {.or}
+              {siteTitle}
+            {.end}
+          </a>
+        </h1>
 
-      <header>
-        {.section website}
-          <h1>
-            <a href="/" data-content-field="site-title">
-              {.section logoImageUrl}
-              <img src="{logoImageUrl}?format=original" alt="{siteTitle}" />
-              {.or}
-                {siteTitle}
-              {.end}
-            </a>
-          </h1>
-
-          {.section siteTagLine}
-            <p>{@}</p>
-          {.end}
-
+        {.section siteTagLine}
+          <p>{@}</p>
         {.end}
 
-        <squarespace:navigation navigationId="primary-nav" template="navigation" />
-      </header>
+      {.end}
 
-      <main data-content-field="main-content">
-        {squarespace.main-content}
-      </main>
+      <squarespace:navigation navigationId="primary-nav" template="navigation" />
+    </header>
 
-      <footer>
-        <squarespace:block-field id="footer-blocks" columns="12" />
-      </footer>
+    <main class="main js-main"data-content-field="main-content">
+      {squarespace.main-content}
+    </main>
 
-    </div>
+    <footer class="footer js-footer">
+      <squarespace:block-field id="footer-blocks" columns="12" />
+    </footer>
 
     <script type="text/javascript" src="/scripts/app.js"></script>
 

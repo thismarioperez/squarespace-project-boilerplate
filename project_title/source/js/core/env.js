@@ -2,7 +2,7 @@ import dom from './dom';
 const DEV = 'development';
 const PROD = 'production';
 const IS_PRODUCTION = process.env.NODE_ENV === PROD;
-const IS_AUTHENTICATED = dom.html.hasAttribute('data-authenticated-account');
+const IS_AUTHENTICATED = dom.html[0].hasAttribute('data-authenticated-account');
 
 /**
  *
