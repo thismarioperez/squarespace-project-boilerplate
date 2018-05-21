@@ -9,16 +9,12 @@ $black: #000;
  * These dimensions mirror those from boostrap-grid
  * @See: https://scotch.io/tutorials/default-sizes-for-twitter-bootstraps-media-queries
 *******************************************************************************/
-/* Custom, iPhone Retina */
-$bp-xx-small:320px;
-$bp-x-small:480px;
-$bp-small:768px;
-$bp-medium:992px;
-$bp-large:1200px;
-$bp-xx-small-only: ($bp-x-small - 1px);
-$bp-x-small-only: ($bp-small - 1px);
-$bp-small-only: ($bp-medium - 1px);
-$bp-medium-only: ($bp-large - 1px);
+
+$bp-xx-small : 320px;
+$bp-x-small : 480px;
+$bp-small : 768px;
+$bp-medium : 992px;
+$bp-large : 1200px;
 
 
 /******************************************************************************

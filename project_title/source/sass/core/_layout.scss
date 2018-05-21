@@ -11,29 +11,29 @@
 /* Custom, iPhone Retina */
 $xx-small: "only screen and (min-width : #{$bp-xx-small})";
 /*Only xx-small screens*/
-$xx-small-only: "only screen and (min-width : #{$bp-xx-small}) and (max-width : #{$bp-xx-small-only})";
+$xx-small-only: "only screen and (min-width : 0px) and (max-width : #{$bp-xx-small})";
 
 
 /* Extra Small Devices, Phones */
 $x-small: "only screen and (min-width : #{$bp-x-small})";
 /*Only x-small screens*/
-$x-small-only: "only screen and (min-width : #{$bp-x-small}) and (max-width : #{$bp-x-small-only})";
+$x-small-only: "only screen and (min-width : #{($bp-xx-small + 1px)}) and (max-width : #{$bp-x-small})";
 
 
 /* Small Devices, Tablets */
 $small: "only screen and (min-width : #{$bp-small})";
 /*Only small screens*/
-$small-only: "only screen and (min-width : #{$bp-small}) and (max-width : #{$bp-small-only})";
+$small-only: "only screen and (min-width : #{($bp-xx-small + 1px)}) and (max-width : #{$bp-small})";
 /* Below small screens*/
-$small-below: "only screen and (max-width: #{$bp-small})";
+$small-below: "only screen and (max-width: #{($bp-small - 1px)})";
 
 
 /* Medium Devices, Desktops */
 $medium: "only screen and (min-width : #{$bp-medium})";
 /*Only medium screens*/
-$medium-only: "only screen and (min-width : #{$bp-medium}) and (max-width : #{$bp-medium-only})";
+$medium-only: "only screen and (min-width : #{($bp-small + 1px)}) and (max-width : #{$bp-medium})";
 /* Below medium screens*/
-$medium-below: "only screen and (max-width: #{$bp-medium})";
+$medium-below: "only screen and (max-width: #{($bp-medium - 1px)})";
 
 
 /* Large Devices, Wide Screens */
