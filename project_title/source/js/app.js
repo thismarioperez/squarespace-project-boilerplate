@@ -1,4 +1,5 @@
 require( '../sass/screen.scss' );
+require( 'babel-polyfill' );
 
 import * as core from './core';
 
