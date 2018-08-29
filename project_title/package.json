@@ -7,7 +7,8 @@
     "production_url": "https://PROJECT_URL-production.squarespace.com"
   },
   "scripts": {
-    "postinstall": "cd ./node_modules/properjs-hobo && npm install && npm run build -- 'is not next prev attr remove append one parent closest' && cd ../../ npm run dev",
+    "postinstall": "npm run hobo",
+    "hobo": "cd ./node_modules/properjs-hobo && npm install && npm run build -- 'append attr eq filter index is not one remove removeAttr'",
     "start": "npm-run-all --parallel server watch",
     "test": "npm-run-all --parallel server:test watch",
     "dev": "squarespace assemble && NODE_ENV=development webpack",
@@ -58,6 +59,7 @@
   },
   "dependencies": {
     "@squarespace/core": "^1.0.1",
+    "babel-polyfill": "^6.26.0",
     "eventemitter3": "^2.0.3",
     "normalize.css": "^7.0.0",
     "properjs-hobo": "^0.3.21"
