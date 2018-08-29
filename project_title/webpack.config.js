@@ -3,18 +3,20 @@ const root = path.resolve(__dirname);
 const source = path.join(root, 'source');
 const nodeModules = 'node_modules';
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const browsers = ['last 2 versions', 'ios >= 9'];
-const extractSass = new ExtractTextPlugin({
-  filename: '../assets/styles/[name].css'
-});
-const CleanUpStatsPlugin = require('./webpack.cleanup-stats-plugin');
 
 module.exports = {
-  devtool: IS_PRODUCTION ? false : 'inline-source-map',
+  mode: process.env.NODE_ENV,
 
+  devtool: IS_PRODUCTION ? false : 'inline-source-map',
+  
+  optimization: {
+    minimize: IS_PRODUCTION ? true : false
+  },
+  
   plugins: [
     // Give the app scripts access to node environment variable.
     new webpack.DefinePlugin({
@@ -23,9 +25,9 @@ module.exports = {
       }
     }),
 
-    new CleanUpStatsPlugin(),
-
-    extractSass,
+    new MiniCssExtractPlugin({
+      filename: '../assets/styles/[name].css'
+    }),
 
     new BabiliPlugin({
       // mangle: IS_PRODUCTION ? { blacklist: ['_'] } : false // don't mangle lodash
@@ -90,21 +92,31 @@ module.exports = {
 
       // Handle Sass files
       { test: /\.(css|scss)$/,
-        use: extractSass.extract({
-          use: [
-            {
-              loader: 'css-loader',
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: IS_PRODUCTION ? true : false,
+              sourceMap: IS_PRODUCTION ? false : true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [require('autoprefixer')({ browsers: browsers })],
               options: {
-                minimize: IS_PRODUCTION ? true : false
+                sourceMap: IS_PRODUCTION ? false : true
               }
-            },
-            { loader: 'postcss-loader',
-              options: { plugins: () => [require('autoprefixer')({ browsers: browsers })] }
-            },
-            { loader: 'sass-loader' }
-          ],
-          fallback: 'style-loader'
-        })
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: IS_PRODUCTION ? false : true
+            }
+          }
+        ]
       }
     ]
   }
