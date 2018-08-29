@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
-const browsers = ['last 2 versions', 'ios >= 9'];
+const browsers = ['last 4 versions', 'ios >= 9', 'Explorer 11'];
 
 module.exports = {
   mode: process.env.NODE_ENV,
