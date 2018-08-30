@@ -5,8 +5,6 @@
     <meta name="viewport" content="initial-scale=1">
     <!-- main stylesheet -->
     <link rel="stylesheet" href="/assets/styles/app.css?v={squarespace.template-revision}">
-    <!-- js polyfills -->
-    <script data-name="polyfills" src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
     {squarespace-headers}
   </head>
   <body id="{squarespace.page-id}" class="{squarespace.page-classes}">
